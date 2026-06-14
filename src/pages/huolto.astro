@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { SITE } from '../config';
+---
+<Base title="Ilmalämpöpumpun huolto" description="Ilmalämpöpumpun huolto ja puhdistus pääkaupunkiseudulla. Säännöllinen huolto pitää laitteen tehokkaana.">
+  <section class="hero">
+    <div class="container">
+      <h1>Ilmalämpöpumpun huolto pääkaupunkiseudulla</h1>
+      <p>Säännöllinen huolto pitää laitteesi tehokkaana, pidentää sen ikää ja parantaa sisäilmaa.</p>
+      <div class="actions">
+        <a href="/yhteys" class="btn btn--cta">Varaa huolto</a>
+        <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p>Suosittelen ilmalämpöpumpun huoltoa 1–3 vuoden välein laitteen käytöstä riippuen. Huollan kaikkien merkkien laitteet – myös muiden asentamat.</p>
+
+      <h2 style="text-align:left">Huoltoon kuuluu</h2>
+      <ul>
+        <li>Suodattimien ja sisäyksikön puhdistus</li>
+        <li>Kennoston ja puhaltimen tarkistus</li>
+        <li>Kylmäaineen ja toiminnan tarkistus</li>
+        <li>Kondenssiveden poiston tarkistus</li>
+        <li>Vikojen ennaltaehkäisy ja raportti</li>
+      </ul>
+
+      <h2 style="text-align:left">Huoltosopimus – huolettomin vaihtoehto</h2>
+      <p>Huoltosopimuksella laitteesi pysyy kunnossa automaattisesti: muistutan huoltoajasta puolestasi ja saat etusijan sekä alennuksen mahdollisiin korjauksiin. Kysy huoltosopimuksesta tarjouksen yhteydessä.</p>
+
+      <p class="note">Lakisääteiset huolto- ja tarkastustiedot dokumentoidaan ja säilytetään asianmukaisesti.</p>
+    </div>
+  </section>
+
+  <Cta title="Varaa huolto tai kysy huoltosopimuksesta" />
+</Base>

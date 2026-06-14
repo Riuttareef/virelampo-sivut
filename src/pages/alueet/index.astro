@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { ALUEET } from '../../data/alueet';
+---
+<Base title="Toiminta-alueet" description="Ilmalämpöpumpun asennus Helsingissä, Espoossa, Vantaalla ja kehyskunnissa.">
+  <section class="hero">
+    <div class="container">
+      <h1>Toiminta-alueet</h1>
+      <p>Palvelen koko pääkaupunkiseutua ja kehyskuntia. Valitse alueesi.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2">
+        {ALUEET.map((a) => (
+          <a href={`/alueet/${a.slug}`} class="card" style="text-decoration:none; color:inherit">
+            <h3>{a.name}</h3>
+            <p style="color:var(--muted)">{a.lead}</p>
+            <span style="color:var(--accent); font-weight:700">Lue lisää →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

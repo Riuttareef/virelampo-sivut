@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base title="Pyydä tarjous" description="Pyydä maksuton tarjous ilmalämpöpumpun asennuksesta pääkaupunkiseudulla.">
+  <section class="hero">
+    <div class="container">
+      <h1>Pyydä maksuton tarjous</h1>
+      <p>Täytä lyhyt lomake tai soita {SITE.phone}. {SITE.responsePromise}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="display:grid; gap:32px; grid-template-columns:1fr;">
+      <div>
+        <!--
+          LOMAKE: Käyttää Formspree-palvelua (toimii Cloudflare Pagesissa, ilmainen taso).
+          Vaihda alla olevaan action-osoitteeseen oma Formspree-tunnuksesi (FORM_ID)
+          osoitteesta formspree.io. Lähetykset tulevat sähköpostiisi.
+        -->
+        <form class="form" method="POST" action="https://formspree.io/f/FORM_ID">
+          <input type="hidden" name="_subject" value="Uusi tarjouspyyntö – Virelämpö" />
+          <input type="hidden" name="_next" value="https://virelampo.fi/kiitos" />
+          <div>
+            <label for="nimi">Nimi *</label>
+            <input id="nimi" name="nimi" required />
+          </div>
+          <div>
+            <label for="puhelin">Puhelin *</label>
+            <input id="puhelin" name="puhelin" type="tel" required />
+          </div>
+          <div>
+            <label for="email">Sähköposti</label>
+            <input id="email" name="email" type="email" />
+          </div>
+          <div>
+            <label for="alue">Paikkakunta / alue *</label>
+            <input id="alue" name="alue" placeholder="esim. Espoo, Leppävaara" required />
+          </div>
+          <div>
+            <label for="palvelu">Mitä tarvitset?</label>
+            <select id="palvelu" name="palvelu">
+              <option>Asennus</option>
+              <option>Huolto</option>
+              <option>Korjaus / vianetsintä</option>
+              <option>Muu</option>
+            </select>
+          </div>
+          <div>
+            <label for="viesti">Kuvaus tilanteesta</label>
+            <textarea id="viesti" name="viesti" placeholder="Talotyyppi, toivottu sijainti laitteelle, mahdolliset kysymykset..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--cta btn--block">Lähetä tarjouspyyntö</button>
+          <p style="font-size:.85rem; color:var(--muted)">Lähettämällä hyväksyt, että otan sinuun yhteyttä tarjousta varten.</p>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Yhteystiedot</h3>
+        <p><strong>Puhelin:</strong> <a href={SITE.phoneHref}>{SITE.phone}</a></p>
+        <p><strong>Sähköposti:</strong> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+        <p><strong>WhatsApp:</strong> <a href={SITE.whatsapp}>Lähetä viesti</a></p>
+        <p><strong>Alue:</strong> {SITE.areaShort}</p>
+        <p style="color:var(--muted); margin-top:10px">{SITE.responsePromise}</p>
+      </div>
+    </div>
+  </section>
+</Base>

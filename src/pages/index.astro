@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { SITE, TRUST, REVIEWS } from '../config';
+import { ALUEET } from '../data/alueet';
+
+const services = [
+  { t: "Asennus", d: "Ilmalämpöpumpun ammattiasennus – siisti läpivienti, putkivedot ja sähköistys.", href: "/asennus" },
+  { t: "Huolto", d: "Vuosihuolto ja puhdistus pitävät laitteen tehokkaana ja pidentävät sen ikää.", href: "/huolto" },
+  { t: "Korjaus", d: "Vianetsintä ja korjaus merkistä riippumatta – nopeasti ja luotettavasti.", href: "/yhteys" },
+];
+const steps = [
+  { t: "Pyydä tarjous", d: "Jätä lyhyt yhteydenotto netissä tai soita." },
+  { t: "Sovitaan aika", d: "Saat kiinteän hinnan ja sopivan asennusajan." },
+  { t: "Asennus", d: "Siisti, ammattitaitoinen asennus sovitusti." },
+  { t: "Opastus", d: "Näytän laitteen käytön ja huoltovinkit." },
+];
+---
+<Base>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>Ilmalämpöpumpun asennus pääkaupunkiseudulla – luotettavasti ja sovittuun hintaan</h1>
+      <p>Kokenut, Tukes-pätevä asentaja. Kiinteät hinnat, siisti jälki ja kotitalousvähennys huomioituna. {SITE.areaShort}.</p>
+      <div class="actions">
+        <a href="/yhteys" class="btn btn--cta">Pyydä maksuton tarjous</a>
+        <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>
+      </div>
+      <p class="mini">{SITE.responsePromise}</p>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="section">
+    <div class="container">
+      <div class="trust">
+        {TRUST.map((x) => (
+          <div class="item">
+            <div class="tick">✓</div>
+            <div><strong>{x.title}</strong><span>{x.text}</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section--soft">
+    <div class="container">
+      <h2>Palvelut</h2>
+      <p class="lead">Keskityn ilmalämpöpumppujen asennukseen ja huoltoon pääkaupunkiseudulla.</p>
+      <div class="grid grid--3">
+        {services.map((s) => (
+          <a href={s.href} class="card" style="text-decoration:none; color:inherit">
+            <h3>{s.t}</h3>
+            <p style="color:var(--muted)">{s.d}</p>
+            <span style="color:var(--accent); font-weight:700">Lue lisää →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section">
+    <div class="container">
+      <h2>Näin se toimii</h2>
+      <p class="lead">Selkeä ja vaivaton prosessi alusta loppuun.</p>
+      <div class="steps">
+        {steps.map((s, i) => (
+          <div class="step">
+            <div class="num">{i + 1}</div>
+            <h3>{s.t}</h3>
+            <p style="color:var(--muted)">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section section--soft">
+    <div class="container">
+      <h2>Asiakkaiden kokemuksia</h2>
+      <p class="lead">Arvostelut kerätään jokaiselta tyytyväiseltä asiakkaalta.</p>
+      <div class="grid grid--3">
+        {REVIEWS.map((r) => (
+          <div class="review">
+            <div class="stars">{"★".repeat(r.stars)}</div>
+            <p>{r.text}</p>
+            <div class="who">{r.name}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="section">
+    <div class="container" style="text-align:center">
+      <h2>Toiminta-alue</h2>
+      <p class="lead">Palvelen koko pääkaupunkiseutua ja kehyskuntia.</p>
+      <ul class="tag-list" style="justify-content:center">
+        {ALUEET.map((a) => <li><a href={`/alueet/${a.slug}`} style="text-decoration:none; color:inherit">{a.name}</a></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

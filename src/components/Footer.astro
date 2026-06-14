@@ -1,0 +1,26 @@
+---
+import { SITE, NAV } from '../config';
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <h4>{SITE.name}</h4>
+        <p>Ilmalämpöpumppujen asennus pääkaupunkiseudulla. Tukes-pätevä ja vakuutettu. Kiinteät hinnat ja siisti jälki.</p>
+        <p>{SITE.areaShort}</p>
+      </div>
+      <div>
+        <h4>Palvelut</h4>
+        {NAV.filter(n => n.href !== '/').map((n) => <p style="margin:.2em 0"><a href={n.href}>{n.label}</a></p>)}
+      </div>
+      <div>
+        <h4>Yhteys</h4>
+        <p style="margin:.2em 0"><a href={SITE.phoneHref}>{SITE.phone}</a></p>
+        <p style="margin:.2em 0"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+        <p style="margin:.2em 0">{SITE.domain}</p>
+      </div>
+    </div>
+    <p class="small">© {year} {SITE.name} · Y-tunnus {SITE.businessId} · Kylmäalan pätevyys (Tukes) · S2-sähköpätevyys</p>
+  </div>
+</footer>

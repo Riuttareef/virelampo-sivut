@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { ALUEET } from '../../data/alueet';
+
+export function getStaticPaths() {
+  return ALUEET.map((a) => ({ params: { slug: a.slug }, props: { alue: a } }));
+}
+
+const { alue } = Astro.props;
+---
+<Base title={alue.title} description={alue.lead}>
+  <section class="hero">
+    <div class="container">
+      <h1>{alue.title}</h1>
+      <p>{alue.lead}</p>
+      <div class="actions">
+        <a href="/yhteys" class="btn btn--cta">Pyydä tarjous</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      {alue.body.map((p) => <p>{p}</p>)}
+
+      <h2 style="text-align:left">Palvelualue {alue.name}ssa</h2>
+      <ul class="tag-list">
+        {alue.kaupunginosat.map((k) => <li>{k}</li>)}
+      </ul>
+      <p style="margin-top:16px">Asennus, huolto ja korjaus – kaikki yhdeltä luotettavalta, Tukes-pätevältä asentajalta.</p>
+    </div>
+  </section>
+
+  <Cta title={`Pyydä tarjous – ${alue.name}`} />
+</Base>

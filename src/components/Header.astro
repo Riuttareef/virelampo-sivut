@@ -1,0 +1,26 @@
+---
+import { SITE, NAV } from '../config';
+---
+<header class="hdr">
+  <div class="container bar">
+    <a href="/" class="brand">{SITE.name}</a>
+    <nav>
+      {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+    <div class="hdr-cta">
+      <a href={SITE.phoneHref} class="phone"><span class="phone-label">Soita </span>{SITE.phone}</a>
+      <a href="/yhteys" class="btn btn--cta" style="padding:10px 16px">Pyydä tarjous</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Valikko">☰</button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="mobile-nav" id="mobileNav">
+      {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+    </div>
+  </div>
+</header>
+<script>
+  const btn = document.getElementById('menuBtn');
+  const nav = document.getElementById('mobileNav');
+  btn?.addEventListener('click', () => nav?.classList.toggle('open'));
+</script>

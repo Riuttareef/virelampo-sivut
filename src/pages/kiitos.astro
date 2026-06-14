@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base title="Kiitos yhteydenotosta">
+  <section class="hero">
+    <div class="container">
+      <h1>Kiitos yhteydenotosta!</h1>
+      <p>Olen vastaanottanut tarjouspyyntösi. {SITE.responsePromise}</p>
+      <div class="actions">
+        <a href="/" class="btn btn--ghost">Takaisin etusivulle</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import { SITE } from '../config';
+
+const includes = [
+  "Enintään 4 m kylmäaineputkea",
+  "Seinäläpivienti (siisti timanttiporaus betoniin/tiileen)",
+  "Ulkoyksikön kiinnitys ja tärinävaimennus",
+  "Kondenssiveden ohjaus",
+  "Sähköistys (S2-pätevyys)",
+  "Käytön ja huollon opastus",
+];
+const faq = [
+  { q: "Kauanko asennus kestää?", a: "Tavallinen asennus valmistuu muutamassa tunnissa, useimmiten saman päivän aikana." },
+  { q: "Saanko kotitalousvähennyksen?", a: "Kyllä, asennustyön osuudesta. Erittelen työn osuuden laskuun valmiiksi vähennystä varten." },
+  { q: "Sotkeeko poraus seinät?", a: "Ei. Käytän laadukasta timanttiporausta, jolla läpivienti tehdään nopeasti ja pölyttömästi." },
+  { q: "Mistä laite hankitaan?", a: "Voit ostaa laitteen itse tai yhteistyökumppanini kautta – autan tarvittaessa oikean mallin valinnassa." },
+];
+---
+<Base title="Ilmalämpöpumpun asennus" description="Ilmalämpöpumpun ammattiasennus pääkaupunkiseudulla. Kiinteä hinta, siisti timanttiporaus, kotitalousvähennys huomioitu.">
+  <section class="hero">
+    <div class="container">
+      <h1>Ilmalämpöpumpun asennus – Helsinki, Espoo, Vantaa</h1>
+      <p>Ammattitaitoinen asennus kiinteällä hinnalla. Saat siistin jäljen, oikean sijoituksen ja opastuksen käyttöön.</p>
+      <div class="actions">
+        <a href="/yhteys" class="btn btn--cta">Pyydä tarjous asennuksesta</a>
+        <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p>Asennan ilmalämpöpumput ammattitaidolla koko pääkaupunkiseudulla. Olen Tukes-pätevä asentaja, jolla on sähköalan S2-pätevyys ja vahva kokemus pumppujen asennuksesta. Saat kiinteän hinnan etukäteen – ei yllätyslaskuja.</p>
+
+      <h2 style="text-align:left">Perusasennukseen kuuluu</h2>
+      <ul>
+        {includes.map((i) => <li>{i}</li>)}
+      </ul>
+      <p class="note">Perusasennus alkaen <strong>{SITE.basePriceFrom} €</strong>. Kotitalousvähennyksen jälkeen nettohinta on selvästi alhaisempi – katso <a href="/hinnoittelu">hinnoittelu</a>.</p>
+
+      <h2 style="text-align:left">Miksi valita minut</h2>
+      <ul>
+        <li>Tukes-pätevyys ja vakuutus – pätevyyden voi tarkistaa rekisteristä</li>
+        <li>Siisti timanttiporaus, joka ei sotke kotia</li>
+        <li>Selkeä hinta etukäteen ja kotitalousvähennyksen ohjeistus</li>
+        <li>Paikallinen, nopea palvelu pääkaupunkiseudulla</li>
+      </ul>
+
+      <h2 style="text-align:left">Usein kysyttyä</h2>
+      {faq.map((f) => (
+        <div style="margin-bottom:14px">
+          <h3 style="margin-bottom:.2em">{f.q}</h3>
+          <p style="color:var(--muted)">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Cta title="Pyydä tarjous asennuksesta" />
+</Base>
