@@ -10,7 +10,7 @@ import { SITE } from '../config';
       <p>Säännöllinen huolto pitää laitteesi tehokkaana, pidentää sen ikää ja parantaa sisäilmaa.</p>
       <div class="actions">
         <a href="/yhteys" class="btn btn--cta">Varaa huolto</a>
-        <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>
+        {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>}
       </div>
     </div>
   </section>

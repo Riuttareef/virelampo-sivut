@@ -16,7 +16,7 @@ const year = new Date().getFullYear();
       </div>
       <div>
         <h4>Yhteys</h4>
-        <p style="margin:.2em 0"><a href={SITE.phoneHref}>{SITE.phone}</a></p>
+        {SITE.showPhone && <p style="margin:.2em 0"><a href={SITE.phoneHref}>{SITE.phone}</a></p>}
         <p style="margin:.2em 0"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
         <p style="margin:.2em 0">{SITE.domain}</p>
       </div>

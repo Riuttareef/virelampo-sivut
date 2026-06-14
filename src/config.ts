@@ -9,7 +9,9 @@ export const SITE = {
   name: "Virelämpö",
   // Lyhyt iskulause (näkyy herossa ja title-tageissa):
   tagline: "Ilmalämpöpumppujen asennus pääkaupunkiseudulla",
-  // Yhteystiedot (puhelin vielä placeholder – vaihda omaan numeroosi):
+  // Puhelin piilotettu kunnes oikea numero saadaan: laita numero alle ja
+  // vaihda showPhone: true, niin kaikki puhelin/WhatsApp-napit palaavat.
+  showPhone: false,
   phone: "010 000 0000",
   phoneHref: "tel:+358100000000",
   email: "info@virelampo.fi",

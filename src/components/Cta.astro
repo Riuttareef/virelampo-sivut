@@ -8,7 +8,7 @@ const { title = "Pyydä maksuton tarjous", text = SITE.responsePromise } = Astro
     <p class="lead">{text}</p>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
       <a href="/yhteys" class="btn btn--cta">Pyydä tarjous</a>
-      <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>
+      {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>}
     </div>
   </div>
 </section>

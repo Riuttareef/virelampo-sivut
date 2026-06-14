@@ -2,6 +2,6 @@
 import { SITE } from '../config';
 ---
 <div class="sticky-cta">
-  <a href={SITE.phoneHref} class="btn btn--ghost">Soita</a>
+  {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita</a>}
   <a href="/yhteys" class="btn btn--cta">Pyydä tarjous</a>
 </div>

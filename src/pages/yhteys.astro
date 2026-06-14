@@ -6,7 +6,7 @@ import { SITE } from '../config';
   <section class="hero">
     <div class="container">
       <h1>Pyydä maksuton tarjous</h1>
-      <p>Täytä lyhyt lomake tai soita {SITE.phone}. {SITE.responsePromise}</p>
+      <p>Täytä lyhyt lomake, niin otan sinuun yhteyttä. {SITE.responsePromise}</p>
     </div>
   </section>
 
@@ -18,9 +18,9 @@ import { SITE } from '../config';
           Vaihda alla olevaan action-osoitteeseen oma Formspree-tunnuksesi (FORM_ID)
           osoitteesta formspree.io. Lähetykset tulevat sähköpostiisi.
         -->
-        <form class="form" method="POST" action="https://formspree.io/f/FORM_ID">
+        <form class="form" method="POST" action="https://formspree.io/f/xnjylbnq">
           <input type="hidden" name="_subject" value="Uusi tarjouspyyntö – Virelämpö" />
-          <input type="hidden" name="_next" value="https://virelampo.fi/kiitos" />
+          <input type="hidden" name="_next" value="https://virelampo-sivut.pages.dev/kiitos" />
           <div>
             <label for="nimi">Nimi *</label>
             <input id="nimi" name="nimi" required />
@@ -57,9 +57,9 @@ import { SITE } from '../config';
 
       <div class="card">
         <h3>Yhteystiedot</h3>
-        <p><strong>Puhelin:</strong> <a href={SITE.phoneHref}>{SITE.phone}</a></p>
+        {SITE.showPhone && <p><strong>Puhelin:</strong> <a href={SITE.phoneHref}>{SITE.phone}</a></p>}
         <p><strong>Sähköposti:</strong> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
-        <p><strong>WhatsApp:</strong> <a href={SITE.whatsapp}>Lähetä viesti</a></p>
+        {SITE.showPhone && <p><strong>WhatsApp:</strong> <a href={SITE.whatsapp}>Lähetä viesti</a></p>}
         <p><strong>Alue:</strong> {SITE.areaShort}</p>
         <p style="color:var(--muted); margin-top:10px">{SITE.responsePromise}</p>
       </div>
