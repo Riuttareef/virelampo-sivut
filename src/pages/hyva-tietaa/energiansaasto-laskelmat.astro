@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { SITE } from '../../config';
+
+const tips = [
+  "Mitoituta laite oikein – väärä koko syö hyötysuhteen",
+  "Anna pumpun hoitaa peruslämmitys, älä pompottele lämpötilaa turhaan",
+  "Pidä sisäyksikön suodattimet puhtaina (tarkistus muutaman viikon välein)",
+  "Huolehdi ulkoyksikkö lumesta ja jäästä talvella",
+  "Tehosta ilmankiertoa: avoimet ovet vievät lämmön ja viileän laajemmalle",
+  "Älä sammuta laitetta öiksi pakkasella – uudelleenlämmitys kuluttaa enemmän",
+];
+
+const faq = [
+  {
+    q: "Miksi todellinen säästö jää usein esitteen lukua pienemmäksi?",
+    a: "Esitteen SCOP mitataan keskimääräistä lämpimämmässä ilmastovyöhykkeessä. Suomen pakkastunnit, sulatusjaksot ja se, että osa lämmöstä tehdään silti vastuksella, laskevat todellista vuosihyötysuhdetta.",
+  },
+  {
+    q: "Kannattaako ilmalämpöpumppu, jos talossa on jo vesikiertoinen lämmitys?",
+    a: "Ilmalämpöpumppu sopii parhaiten suoran sähkölämmityksen tueksi. Jos talossa on esimerkiksi maalämpö tai kaukolämpö, säästölogiikka on erilainen – arvioidaan tapauskohtaisesti.",
+  },
+];
+
+const updated = "2026-06-16";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Paljonko ilmalämpöpumppu säästää? Vinkit ja laskelmat lämmityskaudelle",
+  description: "Miten ilmalämpöpumpun säästö syntyy, mikä on realistinen hyötysuhde Suomessa ja esimerkkilaskelma suorasähkölämmitykseen verrattuna.",
+  author: { "@type": "Organization", name: SITE.name },
+  publisher: { "@type": "Organization", name: SITE.name, "@id": `https://${SITE.domain}/#business` },
+  mainEntityOfPage: `https://${SITE.domain}/hyva-tietaa/energiansaasto-laskelmat`,
+  dateModified: updated,
+};
+---
+<Base
+  title="Paljonko ilmalämpöpumppu säästää? Laskelmat lämmityskaudelle"
+  description="Miten ilmalämpöpumpun säästö syntyy, realistinen hyötysuhde Suomessa ja esimerkkilaskelma suorasähkölämmitykseen verrattuna. Energiansäästövinkit."
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container">
+      <span class="pill">Energiansäästö</span>
+      <h1>Paljonko ilmalämpöpumppu säästää?</h1>
+      <p>Säästö syntyy hyötysuhteesta – mutta todellinen luku Suomessa on maltillisempi kuin esitteen SCOP. Käydään läpi miten säästö lasketaan ja mistä se riippuu.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p><a href="/hyva-tietaa">← Hyvä tietää</a></p>
+
+      <h2 style="text-align:left">Mistä säästö syntyy?</h2>
+      <p>Ilmalämpöpumppu ei tee lämpöä tyhjästä, vaan siirtää sitä ulkoilmasta sisään. Siksi se tuottaa enemmän lämpöenergiaa kuin kuluttaa sähköä. Tätä suhdetta kuvaa <strong>COP</strong>: jos COP on 3, laite antaa kolme yksikköä lämpöä yhdellä yksiköllä sähköä. <strong>SCOP</strong> on saman luvun koko lämmityskauden keskiarvo.</p>
+
+      <h2 style="text-align:left">Realistinen hyötysuhde Suomessa</h2>
+      <p>Esitteissä näkyvä SCOP (esim. 4,5) mitataan keskimääräistä lämpimämmässä vyöhykkeessä. Suomi kuuluu kylmään ilmastovyöhykkeeseen, joten <strong>todellinen vuosihyötysuhde jää usein 2,5–3,5 tienoille</strong>. Eroa selittävät pakkastuntien heikompi teho, sulatusjaksot ja se, että kovimmilla pakkasilla lämpöä tehdään silti vastuksella.</p>
+      <p class="note">Se ei tarkoita, etteikö pumppu kannattaisi – se tarkoittaa, että lasketaan realistisilla luvuilla, ei myyntiesitteen parhailla.</p>
+
+      <h2 style="text-align:left">Esimerkkilaskelma: suorasähkö vs. ilmalämpöpumppu</h2>
+      <p>Otetaan sähkölämmitteinen omakotitalo, jonka huonelämmitys kuluttaa noin <strong>15 000 kWh vuodessa</strong>. Oikein mitoitettu ilmalämpöpumppu kattaa tyypillisesti merkittävän osan tästä, ja säästö asettuu usein <strong>30–50 %:iin lämmityskuluista</strong>.</p>
+      <table class="price">
+        <tr><th>Tilanne</th><th>Lämmityskulu / v*</th></tr>
+        <tr><td>Pelkkä suora sähkölämmitys (15 000 kWh)</td><td>≈ 2 250 €</td></tr>
+        <tr><td>Ilmalämpöpumppu mukana (säästö ~40 %)</td><td>≈ 1 350 €</td></tr>
+        <tr><td><strong>Säästö vuodessa</strong></td><td><strong>≈ 900 €</strong></td></tr>
+      </table>
+      <p style="color:var(--muted);font-size:.86rem">*Esimerkki sähkön hinnalla 15 snt/kWh. Luvut ovat suuntaa-antavia ja riippuvat talosta, käytöstä ja sähkön hinnasta.</p>
+      <p>Motivan arvion mukaan ilmalämpöpumppu säästää tyypillisesti luokkaa <strong>3 000 kWh vuodessa</strong>, mikä nykyisillä sähkön hinnoilla tarkoittaa satojen eurojen vuosisäästöä. Suuremmassa tai huonosti eristetyssä talossa säästö voi olla isompikin.</p>
+
+      <h2 style="text-align:left">Energiansäästövinkit lämmityskaudelle</h2>
+      <ul class="checklist">
+        {tips.map((t) => <li>{t}</li>)}
+      </ul>
+
+      <h2 style="text-align:left">Usein kysyttyä</h2>
+      {faq.map((f) => (
+        <div style="margin-bottom:14px">
+          <h3 style="margin-bottom:.2em">{f.q}</h3>
+          <p style="color:var(--muted)">{f.a}</p>
+        </div>
+      ))}
+
+      <p style="color:var(--muted);font-size:.86rem;margin-top:28px">Päivitetty {updated}. Lasketaan mielellämme arvio juuri sinun kohteeseesi.</p>
+    </div>
+  </section>
+
+  <Cta title="Pyydä arvio säästöistä omaan kohteeseesi" />
+</Base>

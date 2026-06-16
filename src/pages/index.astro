@@ -2,33 +2,52 @@
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
 import { SITE, TRUST, REVIEWS } from '../config';
-import { ALUEET } from '../data/alueet';
 
 const services = [
-  { t: "Asennus", d: "Ilmalämpöpumpun ammattiasennus – siisti läpivienti, putkivedot ja sähköistys.", href: "/asennus" },
-  { t: "Huolto", d: "Vuosihuolto ja puhdistus pitävät laitteen tehokkaana ja pidentävät sen ikää.", href: "/huolto" },
-  { t: "Korjaus", d: "Vianetsintä ja korjaus merkistä riippumatta – nopeasti ja luotettavasti.", href: "/yhteys" },
+  { t: "Asennus", d: "Ilmalämpöpumpun ammattiasennus – siisti läpivienti, putkivedot ja sähköistys.", href: "/asennus",
+    icon: '<rect x="2.5" y="6" width="19" height="6.5" rx="2"/><line x1="6" y1="9.2" x2="14" y2="9.2"/><path d="M6.5 16.6c1.2-1.3 2.4-1.3 3.6 0"/><path d="M14 16.6c1.2-1.3 2.4-1.3 3.6 0"/>' },
+  { t: "Huolto", d: "Vuosihuolto ja puhdistus pitävät laitteen tehokkaana ja pidentävät sen ikää.", href: "/huolto",
+    icon: '<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3.5v4.5h-4.5"/>' },
+  { t: "Korjaus", d: "Vianetsintä ja korjaus merkistä riippumatta – nopeasti ja luotettavasti.", href: "/yhteys",
+    icon: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>' },
 ];
 const steps = [
   { t: "Pyydä tarjous", d: "Jätä lyhyt yhteydenotto netissä tai soita." },
   { t: "Sovitaan aika", d: "Saat kiinteän hinnan ja sopivan asennusajan." },
   { t: "Asennus", d: "Siisti, ammattitaitoinen asennus sovitusti." },
-  { t: "Opastus", d: "Näytän laitteen käytön ja huoltovinkit." },
+  { t: "Opastus", d: "Näytämme laitteen käytön ja huoltovinkit." },
 ];
 ---
 <Base>
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" style="background-image: linear-gradient(115deg, rgba(30,44,57,.84) 0%, rgba(47,65,86,.58) 52%, rgba(86,124,141,.4) 100%), url('/kuvat/hero.jpg'); background-size: cover; background-position: center;">
     <div class="container">
-      <h1>Ilmalämpöpumpun asennus pääkaupunkiseudulla – luotettavasti ja sovittuun hintaan</h1>
-      <p>Kokenut, Tukes-pätevä asentaja. Kiinteät hinnat, siisti jälki ja kotitalousvähennys huomioituna. {SITE.areaShort}.</p>
+      <span class="pill">✓ Tukes-pätevä &amp; vakuutettu</span>
+      <h1>Viileä koti kesällä – lämmin talvella.</h1>
+      <p>Asennamme ilmalämpöpumput jäähdytykseen koteihin ja asuntoihin. Kokeneet, Tukes-pätevät asentajat, kiinteät hinnat ja siisti jälki.</p>
       <div class="actions">
-        <a href="/yhteys" class="btn btn--cta">Pyydä maksuton tarjous</a>
+        <a href="/yhteys" class="btn btn--cta">Pyydä maksuton tarjous →</a>
         {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>}
       </div>
       <p class="mini">{SITE.responsePromise}</p>
     </div>
   </section>
+
+  <!-- SERVICES (kelluvat lasikortit heron päällä) -->
+  <div class="services">
+    <div class="container">
+      <div class="grid grid--3">
+        {services.map((s) => (
+          <a href={s.href} class="scard">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} /></div>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+            <span class="more">Lue lisää →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
 
   <!-- TRUST -->
   <section class="section">
@@ -39,23 +58,6 @@ const steps = [
             <div class="tick">✓</div>
             <div><strong>{x.title}</strong><span>{x.text}</span></div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section section--soft">
-    <div class="container">
-      <h2>Palvelut</h2>
-      <p class="lead">Keskityn ilmalämpöpumppujen asennukseen ja huoltoon pääkaupunkiseudulla.</p>
-      <div class="grid grid--3">
-        {services.map((s) => (
-          <a href={s.href} class="card" style="text-decoration:none; color:inherit">
-            <h3>{s.t}</h3>
-            <p style="color:var(--muted)">{s.d}</p>
-            <span style="color:var(--accent); font-weight:700">Lue lisää →</span>
-          </a>
         ))}
       </div>
     </div>
@@ -78,8 +80,41 @@ const steps = [
     </div>
   </section>
 
-  <!-- REVIEWS -->
+  <!-- VIHREÄT ARVOT / ENERGIANSÄÄSTÖ -->
   <section class="section section--soft">
+    <div class="container">
+      <div class="feature">
+        <div class="shot"><img src="/kuvat/luonto.jpg" alt="Suomalainen luonto" onerror="this.remove()" /><span>kuvat/luonto.jpg</span></div>
+        <div>
+          <span class="pill" style="background:var(--green-soft); color:var(--green-d); border-color:transparent">Viileyttä ja raikkautta</span>
+          <h2>Viileä koti kesällä – energiatehokkaasti</h2>
+          <p style="color:var(--muted)">Ilmalämpöpumppu jäähdyttää kotisi tehokkaasti kuumina kesäpäivinä ja parantaa sisäilmaa. Energiatehokkaana se kuormittaa ympäristöä vähemmän – ja tuo lämpöä talvella siellä missä se on sallittu.</p>
+          <ul class="checklist">
+            <li>Tehokas jäähdytys kuumina kesäpäivinä</li>
+            <li>Raikkaampi ja suodatettu sisäilma</li>
+            <li>Energiatehokas – tuottaa moninkertaisesti käyttämänsä sähkön verran viilennystä ja lämpöä</li>
+            <li>Lämmitys talvella lisähyötynä (omakoti- ja rivitalot)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYÖN JÄLKI / GALLERIA (kuvapaikat – lisää kuvat kansioon public/kuvat/) -->
+  <section class="section section--soft">
+    <div class="container">
+      <h2>Työn jälki</h2>
+      <p class="lead">Siisti asennus, oikea sijoitus ja huolelliset läpiviennit. Lisää tähän kuvia tekemistäsi asennuksista.</p>
+      <div class="gallery">
+        <div class="shot"><img src="/kuvat/tyo1.jpg" alt="Asennettu ilmalämpöpumppu" onerror="this.remove()" /><span>kuvat/tyo1.jpg</span></div>
+        <div class="shot"><img src="/kuvat/tyo2.jpg" alt="Siisti seinäläpivienti" onerror="this.remove()" /><span>kuvat/tyo2.jpg</span></div>
+        <div class="shot"><img src="/kuvat/tyo3.jpg" alt="Sisäyksikkö olohuoneessa" onerror="this.remove()" /><span>kuvat/tyo3.jpg</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section">
     <div class="container">
       <h2>Asiakkaiden kokemuksia</h2>
       <p class="lead">Arvostelut kerätään jokaiselta tyytyväiseltä asiakkaalta.</p>
@@ -92,17 +127,6 @@ const steps = [
           </div>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- AREAS -->
-  <section class="section">
-    <div class="container" style="text-align:center">
-      <h2>Toiminta-alue</h2>
-      <p class="lead">Palvelen koko pääkaupunkiseutua ja kehyskuntia.</p>
-      <ul class="tag-list" style="justify-content:center">
-        {ALUEET.map((a) => <li><a href={`/alueet/${a.slug}`} style="text-decoration:none; color:inherit">{a.name}</a></li>)}
-      </ul>
     </div>
   </section>
 

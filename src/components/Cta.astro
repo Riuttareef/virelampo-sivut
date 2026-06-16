@@ -2,13 +2,15 @@
 import { SITE } from '../config';
 const { title = "Pyydä maksuton tarjous", text = SITE.responsePromise } = Astro.props;
 ---
-<section class="section section--soft">
-  <div class="container" style="text-align:center">
-    <h2>{title}</h2>
-    <p class="lead">{text}</p>
-    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
-      <a href="/yhteys" class="btn btn--cta">Pyydä tarjous</a>
-      {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>}
+<section class="section">
+  <div class="container">
+    <div class="ctaband">
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <a href="/yhteys" class="btn btn--cta">Pyydä tarjous →</a>
+        {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>}
+      </div>
     </div>
   </div>
 </section>

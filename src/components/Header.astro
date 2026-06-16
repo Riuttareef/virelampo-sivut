@@ -1,26 +1,61 @@
 ---
 import { SITE, NAV } from '../config';
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => href === '/' ? path === '/' : path.startsWith(href);
 ---
 <header class="hdr">
   <div class="container bar">
-    <a href="/" class="brand"><img src="/logo.png" alt={SITE.name} class="brand-logo" width="34" height="34" /><span>{SITE.name}</span></a>
+    <a href="/" class="brand"><img src="/logo.png" alt={SITE.name} class="brand-logo" width="40" height="40" />{SITE.name}</a>
     <nav>
-      {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+      {NAV.map((n) => <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>)}
     </nav>
     <div class="hdr-cta">
       {SITE.showPhone && <a href={SITE.phoneHref} class="phone"><span class="phone-label">Soita </span>{SITE.phone}</a>}
       <a href="/yhteys" class="btn btn--cta" style="padding:10px 16px">Pyydä tarjous</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Valikko">☰</button>
-    </div>
-  </div>
-  <div class="container">
-    <div class="mobile-nav" id="mobileNav">
-      {NAV.map((n) => <a href={n.href}>{n.label}</a>)}
+      <button class="menu-btn" id="menuBtn" aria-label="Valikko" aria-expanded="false" aria-controls="mobileNav">
+        <span class="menu-ico"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- Full-screen mobile menu (premium overlay) – kept outside <header> so the
+     header's backdrop-filter doesn't trap this position:fixed overlay -->
+<div class="mobile-menu" id="mobileNav">
+    <div class="mobile-menu__bg" aria-hidden="true"></div>
+    <div class="mobile-menu__top">
+      <a href="/" class="brand brand--light"><img src="/logo.png" alt={SITE.name} class="brand-logo" width="40" height="40" />{SITE.name}</a>
+      <button class="menu-close" id="menuClose" aria-label="Sulje valikko">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="Mobiilivalikko">
+      {NAV.map((n, i) => (
+        <a href={n.href} class={isCurrent(n.href) ? 'is-current' : undefined} aria-current={isCurrent(n.href) ? 'page' : undefined}>
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="lbl">{n.label}</span>
+          <span class="arw" aria-hidden="true">→</span>
+        </a>
+      ))}
+    </nav>
+    <div class="mobile-menu__foot">
+      <a href="/yhteys" class="btn btn--cta btn--block">Pyydä tarjous</a>
+      <a href={`mailto:${SITE.email}`} class="mm-contact">{SITE.email}</a>
+      <p class="mm-area">{SITE.areaShort}</p>
+    </div>
+</div>
 <script>
   const btn = document.getElementById('menuBtn');
-  const nav = document.getElementById('mobileNav');
-  btn?.addEventListener('click', () => nav?.classList.toggle('open'));
+  const menu = document.getElementById('mobileNav');
+  const closeBtn = document.getElementById('menuClose');
+  const setOpen = (open: boolean) => {
+    menu?.classList.toggle('open', open);
+    btn?.classList.toggle('is-open', open);
+    btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.classList.toggle('menu-open', open);
+  };
+  btn?.addEventListener('click', () => setOpen(!menu?.classList.contains('open')));
+  closeBtn?.addEventListener('click', () => setOpen(false));
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 </script>

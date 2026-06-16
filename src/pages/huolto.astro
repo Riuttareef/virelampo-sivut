@@ -2,36 +2,145 @@
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
 import { SITE } from '../config';
+
+// HUOM: luonnoshinnat – aseta omat hintasi.
+const paketit = [
+  {
+    nimi: "Kevythuolto", hinta: "alk. 149 €", featured: false,
+    sub: "Kevyt puhdistus ja toiminnan tarkistus. Sopii vähän käytetylle tai siistissä ympäristössä olevalle laitteelle.",
+    sis: [
+      "Sisäyksikön suodattimien ja näkyvien osien puhdistus",
+      "Kennon kevyt puhdistus",
+      "Kondenssiveden poiston testaus",
+      "Ulkoyksikön yleiskunnon tarkastus",
+      "Toiminnan tarkistus",
+    ],
+  },
+  {
+    nimi: "Täyshuolto", hinta: "alk. 239 €", featured: true,
+    sub: "Perusteellinen pesu, jossa sisäyksikkö puretaan ja puhdistetaan läpikotaisin. Suosituin valinta.",
+    sis: [
+      "Sisäyksikön purku osien perusteellista puhdistusta varten",
+      "Puhallinrummun ja kennon syväpuhdistus matalapainehöyryllä ja desinfiointiaineella",
+      "Läpivientien, kourujen ja laakerien tarkastus",
+      "Kondenssiveden poiston testaus",
+      "Kylmäaineen paineiden ja lämpötilojen mittaus",
+      "Sisä- ja ulkoyksikön puhdistus ja yleiskunnon tarkastus",
+    ],
+  },
+  {
+    nimi: "Täyshuolto + raportti", hinta: "alk. 289 €", featured: false,
+    sub: "Kuten täyshuolto, mutta mukana mitatut arvot ja kirjallinen raportti laitteen kunnosta.",
+    sis: [
+      "Kaikki täyshuollon toimet",
+      "Puhallinlämpötilojen mittaus",
+      "Mitatut paineet ja lämpötilat kirjattuna",
+      "Kirjallinen loppuraportti laitteen kunnosta",
+      "Hyödyllinen kunnon seurantaan ja takuuasioissa",
+    ],
+  },
+];
+
+const merkit = [
+  ["Outo ääni", "Kolinaa, hurinaa tai muuta poikkeavaa ääntä laitteesta."],
+  ["Heikentynyt teho", "Laite ei enää lämmitä tai viilennä yhtä tehokkaasti kuin ennen."],
+  ["Sähkölasku nousee", "Kulutus kasvaa ilman selkeää syytä – likainen laite kuluttaa enemmän."],
+  ["Heikko ilmavirta tai haju", "Tukkeutunut kenno tai suodatin heikentää ilmavirtaa ja sisäilmaa."],
+];
+
+const omatoiminen = [
+  ["Puhdista suodattimet", "Irrota sisäyksikön suodattimet, imuroi tai pese ne vedellä ja aseta takaisin. Suositus 1–2 kertaa kuukaudessa."],
+  ["Tarkista ulkoyksikkö", "Poista lehdet, roskat ja lumi yksikön ympäriltä. Varmista ettei kotelossa ole vaurioita tai tukoksia."],
+  ["Testaa asetukset", "Tarkista että kaukosäädin toimii ja asetukset ovat oikein – lämmitys talvella, viilennys kesällä."],
+];
+
+// Service-schema hakukoneille
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Ilmalämpöpumpun huolto",
+  provider: { "@type": "HVACBusiness", name: SITE.name, "@id": `https://${SITE.domain}/#business` },
+  areaServed: SITE.areaShort,
+  description: "Ilmalämpöpumpun huolto ja puhdistus kaikkiin merkkeihin, selkeät paketit kiinteällä hinnalla.",
+};
 ---
-<Base title="Ilmalämpöpumpun huolto" description="Ilmalämpöpumpun huolto ja puhdistus pääkaupunkiseudulla. Säännöllinen huolto pitää laitteen tehokkaana.">
+<Base title="Ilmalämpöpumpun huolto" description="Ilmalämpöpumpun huolto ja puhdistus ammattitaidolla. Selkeät huoltopaketit hintoineen. Säännöllinen huolto pitää laitteen tehokkaana." schema={schema}>
   <section class="hero">
     <div class="container">
-      <h1>Ilmalämpöpumpun huolto pääkaupunkiseudulla</h1>
-      <p>Säännöllinen huolto pitää laitteesi tehokkaana, pidentää sen ikää ja parantaa sisäilmaa.</p>
+      <span class="pill">Huollamme kaikki merkit – myös muiden asentamat</span>
+      <h1>Ilmalämpöpumpun huolto ammattitaidolla</h1>
+      <p>Säännöllinen huolto pitää laitteesi tehokkaana, pidentää sen ikää ja parantaa sisäilmaa. Suositus: huolto 1–3 vuoden välein käytöstä riippuen.</p>
       <div class="actions">
-        <a href="/yhteys" class="btn btn--cta">Varaa huolto</a>
-        {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>}
+        <a href="/yhteys" class="btn btn--cta">Varaa huolto →</a>
       </div>
     </div>
   </section>
 
+  <!-- PAKETIT -->
   <section class="section">
-    <div class="container prose">
-      <p>Suosittelen ilmalämpöpumpun huoltoa 1–3 vuoden välein laitteen käytöstä riippuen. Huollan kaikkien merkkien laitteet – myös muiden asentamat.</p>
+    <div class="container">
+      <h2>Huoltopaketit</h2>
+      <p class="lead">Valitse laitteesi käytön ja kunnon mukaan. Saat aina kiinteän hinnan etukäteen.</p>
+      <div class="pkg-grid">
+        {paketit.map((p) => (
+          <div class={p.featured ? "pkg featured" : "pkg"}>
+            {p.featured && <span class="badge">Suosituin</span>}
+            <h3>{p.nimi}</h3>
+            <div class="pkg-price">{p.hinta}</div>
+            <p class="pkg-sub">{p.sub}</p>
+            <ul>{p.sis.map((x) => <li>{x}</li>)}</ul>
+            <a href="/yhteys" class="btn btn--cta">Varaa {p.nimi.toLowerCase()}</a>
+          </div>
+        ))}
+      </div>
+      <p style="font-size:.9rem; color:var(--muted); margin-top:14px; text-align:center; max-width:760px; margin-left:auto; margin-right:auto">Lisätyöt 74 €/h · kylmäaineen lisäys R32 35 €/100 g · huolto yli 3,2 m korkeuteen +80 €. Hinnat sisältävät alv:n (25,5 %) ja ovat suuntaa-antavia. Lopullinen hinta vahvistetaan ennen työtä, ja kotitalousvähennys huomioidaan työn osuudesta.</p>
+    </div>
+  </section>
 
-      <h2 style="text-align:left">Huoltoon kuuluu</h2>
-      <ul>
-        <li>Suodattimien ja sisäyksikön puhdistus</li>
-        <li>Kennoston ja puhaltimen tarkistus</li>
-        <li>Kylmäaineen ja toiminnan tarkistus</li>
-        <li>Kondenssiveden poiston tarkistus</li>
-        <li>Vikojen ennaltaehkäisy ja raportti</li>
-      </ul>
+  <!-- MILLOIN HUOLTO -->
+  <section class="section section--soft">
+    <div class="container" style="max-width:900px">
+      <h2 style="text-align:left">Milloin huolto on tarpeen?</h2>
+      <div class="grid grid--2">
+        {merkit.map((m) => (
+          <div class="card"><h3>{m[0]}</h3><p style="color:var(--muted); margin:0">{m[1]}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <h2 style="text-align:left">Huoltosopimus – huolettomin vaihtoehto</h2>
-      <p>Huoltosopimuksella laitteesi pysyy kunnossa automaattisesti: muistutan huoltoajasta puolestasi ja saat etusijan sekä alennuksen mahdollisiin korjauksiin. Kysy huoltosopimuksesta tarjouksen yhteydessä.</p>
+  <!-- OMATOIMINEN HUOLTO -->
+  <section class="section">
+    <div class="container">
+      <h2>Omatoiminen huolto – pidä laite kunnossa itse</h2>
+      <p class="lead">Pienillä toimilla pidät pumpun puhtaana huoltojen välissä. Isommat puhdistukset kannattaa jättää ammattilaiselle.</p>
+      <div class="steps">
+        {omatoiminen.map((s, i) => (
+          <div class="step">
+            <div class="num">{i + 1}</div>
+            <h3>{s[0]}</h3>
+            <p style="color:var(--muted)">{s[1]}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <p class="note">Lakisääteiset huolto- ja tarkastustiedot dokumentoidaan ja säilytetään asianmukaisesti.</p>
+  <!-- HUOLTOSOPIMUS -->
+  <section class="section section--soft">
+    <div class="container" style="max-width:900px">
+      <div class="card">
+        <h2 style="text-align:left; margin-top:0">Huoltosopimus – huolettomin vaihtoehto</h2>
+        <p>Huoltosopimuksella laitteesi pysyy kunnossa automaattisesti: muistutamme huoltoajasta puolestasi, saat etusijan huoltopyyntöihin ja kiinteän hinnan ilman yllätyksiä.</p>
+        <ul class="checklist">
+          <li>Vuosittainen huolto sovitulla aikataululla</li>
+          <li>Etuoikeus huolto- ja vikapyyntöihin</li>
+          <li>Kiinteä hinta, ei yllätyksiä</li>
+          <li>Mahdollinen alennus korjauksista ja lisätöistä</li>
+        </ul>
+        <a href="/yhteys" class="btn btn--cta" style="margin-top:6px">Kysy huoltosopimuksesta</a>
+      </div>
+      <p class="note" style="margin-top:18px">Lakisääteiset huolto- ja kylmäainetiedot dokumentoidaan ja säilytetään asianmukaisesti.</p>
     </div>
   </section>
 

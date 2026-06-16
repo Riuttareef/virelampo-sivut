@@ -7,12 +7,13 @@ const year = new Date().getFullYear();
     <div class="cols">
       <div>
         <h4>{SITE.name}</h4>
-        <p>Ilmalämpöpumppujen asennus pääkaupunkiseudulla. Tukes-pätevä ja vakuutettu. Kiinteät hinnat ja siisti jälki.</p>
+        <p>Ilmalämpöpumppujen asennus ja huolto. Tukes-pätevä ja vakuutettu. Kiinteät hinnat ja siisti jälki.</p>
         <p>{SITE.areaShort}</p>
       </div>
       <div>
         <h4>Palvelut</h4>
         {NAV.filter(n => n.href !== '/').map((n) => <p style="margin:.2em 0"><a href={n.href}>{n.label}</a></p>)}
+        <p style="margin:.2em 0"><a href="/tietoa">Tietoa meistä</a></p>
       </div>
       <div>
         <h4>Yhteys</h4>

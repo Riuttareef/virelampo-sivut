@@ -5,7 +5,7 @@ import { SITE } from '../config';
 
 const includes = [
   "Enintään 4 m kylmäaineputkea",
-  "Seinäläpivienti (siisti timanttiporaus betoniin/tiileen)",
+  "Seinäläpivienti puuseinään",
   "Ulkoyksikön kiinnitys ja tärinävaimennus",
   "Kondenssiveden ohjaus",
   "Sähköistys (S2-pätevyys)",
@@ -13,15 +13,38 @@ const includes = [
 ];
 const faq = [
   { q: "Kauanko asennus kestää?", a: "Tavallinen asennus valmistuu muutamassa tunnissa, useimmiten saman päivän aikana." },
-  { q: "Saanko kotitalousvähennyksen?", a: "Kyllä, asennustyön osuudesta. Erittelen työn osuuden laskuun valmiiksi vähennystä varten." },
-  { q: "Sotkeeko poraus seinät?", a: "Ei. Käytän laadukasta timanttiporausta, jolla läpivienti tehdään nopeasti ja pölyttömästi." },
-  { q: "Mistä laite hankitaan?", a: "Voit ostaa laitteen itse tai yhteistyökumppanini kautta – autan tarvittaessa oikean mallin valinnassa." },
+  { q: "Saanko kotitalousvähennyksen?", a: "Kyllä, asennustyön osuudesta. Erittelemme työn osuuden laskuun valmiiksi vähennystä varten." },
+  { q: "Sotkeeko poraus seinät?", a: "Ei. Käytämme laadukasta timanttiporausta, jolla läpivienti tehdään nopeasti ja pölyttömästi." },
+  { q: "Mistä laite hankitaan?", a: "Voit ostaa laitteen itse tai yhteistyökumppanimme kautta – autamme tarvittaessa oikean mallin valinnassa." },
+  { q: "Sopiiko ilmalämpöpumppu kerrostaloon?", a: "Kyllä, jäähdytyskäyttöön. Kerrostaloasunnoissa tarvitaan taloyhtiön lupa, ja yleensä sallitaan vain jäähdytys – ei lämmityskäyttöä. Autamme lupa-asiassa ja oikean laitteen valinnassa." },
+];
+
+// Service- ja FAQ-schema hakukoneille
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Ilmalämpöpumpun asennus",
+    provider: { "@type": "HVACBusiness", name: SITE.name, "@id": `https://${SITE.domain}/#business` },
+    areaServed: SITE.areaShort,
+    description: "Ilmalämpöpumpun ammattiasennus kiinteällä hinnalla, Tukes-pätevä asentaja.",
+    offers: { "@type": "Offer", priceCurrency: "EUR", price: SITE.basePriceFrom },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  },
 ];
 ---
-<Base title="Ilmalämpöpumpun asennus" description="Ilmalämpöpumpun ammattiasennus pääkaupunkiseudulla. Kiinteä hinta, siisti timanttiporaus, kotitalousvähennys huomioitu.">
+<Base title="Ilmalämpöpumpun asennus" description="Ilmalämpöpumpun ammattiasennus kiinteällä hinnalla. Siisti timanttiporaus, kotitalousvähennys huomioitu." schema={schema}>
   <section class="hero">
     <div class="container">
-      <h1>Ilmalämpöpumpun asennus – Helsinki, Espoo, Vantaa</h1>
+      <h1>Ilmalämpöpumpun asennus ammattitaidolla</h1>
       <p>Ammattitaitoinen asennus kiinteällä hinnalla. Saat siistin jäljen, oikean sijoituksen ja opastuksen käyttöön.</p>
       <div class="actions">
         <a href="/yhteys" class="btn btn--cta">Pyydä tarjous asennuksesta</a>
@@ -32,7 +55,7 @@ const faq = [
 
   <section class="section">
     <div class="container prose">
-      <p>Asennan ilmalämpöpumput ammattitaidolla koko pääkaupunkiseudulla. Olen Tukes-pätevä asentaja, jolla on sähköalan S2-pätevyys ja vahva kokemus pumppujen asennuksesta. Saat kiinteän hinnan etukäteen – ei yllätyslaskuja.</p>
+      <p>Asennamme ilmalämpöpumput jäähdytykseen koteihin ja asuntoihin – ja lämmitykseen siellä missä se on sallittu. Olemme Tukes-päteviä, ja meillä on sähköalan S2-pätevyys sekä vahva kokemus pumppujen asennuksesta. Saat kiinteän hinnan etukäteen – ei yllätyslaskuja.</p>
 
       <h2 style="text-align:left">Perusasennukseen kuuluu</h2>
       <ul>
@@ -40,12 +63,12 @@ const faq = [
       </ul>
       <p class="note">Perusasennus alkaen <strong>{SITE.basePriceFrom} €</strong>. Kotitalousvähennyksen jälkeen nettohinta on selvästi alhaisempi – katso <a href="/hinnoittelu">hinnoittelu</a>.</p>
 
-      <h2 style="text-align:left">Miksi valita minut</h2>
+      <h2 style="text-align:left">Miksi valita meidät</h2>
       <ul>
         <li>Tukes-pätevyys ja vakuutus – pätevyyden voi tarkistaa rekisteristä</li>
-        <li>Siisti timanttiporaus, joka ei sotke kotia</li>
+        <li>Siisti asennustyö, joka ei sotke kotia</li>
         <li>Selkeä hinta etukäteen ja kotitalousvähennyksen ohjeistus</li>
-        <li>Paikallinen, nopea palvelu pääkaupunkiseudulla</li>
+        <li>Paikallinen, nopea ja joustava palvelu</li>
       </ul>
 
       <h2 style="text-align:left">Usein kysyttyä</h2>

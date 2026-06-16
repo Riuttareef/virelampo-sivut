@@ -1,29 +1,38 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Cta from '../../components/Cta.astro';
-import { ALUEET } from '../../data/alueet';
+import { AREAS, LOCATIONS } from '../../config';
+
+// Ryhmittele kaupungit alueittain
+const ryhmat = (Object.keys(AREAS) as (keyof typeof AREAS)[]).map((key) => ({
+  alue: AREAS[key],
+  kaupungit: LOCATIONS.filter((l) => l.area === key),
+}));
 ---
-<Base title="Toiminta-alueet" description="Ilmalämpöpumpun asennus Helsingissä, Espoossa, Vantaalla ja kehyskunnissa.">
+<Base title="Toiminta-alueet" description="Ilmalämpöpumppujen asennus ja huolto Uudellamaalla, Varsinais-Suomessa ja Tampereen seudulla. Katso oman kaupunkisi sivu.">
   <section class="hero">
     <div class="container">
-      <h1>Toiminta-alueet</h1>
-      <p>Palvelen koko pääkaupunkiseutua ja kehyskuntia. Valitse alueesi.</p>
+      <span class="pill">Toiminta-alueet</span>
+      <h1>Asennamme ilmalämpöpumput kolmella alueella</h1>
+      <p>Valitse kaupunkisi – näet alueen lähtöhinnan ja paikalliset tiedot.</p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="grid grid--2">
-        {ALUEET.map((a) => (
-          <a href={`/alueet/${a.slug}`} class="card" style="text-decoration:none; color:inherit">
-            <h3>{a.name}</h3>
-            <p style="color:var(--muted)">{a.lead}</p>
-            <span style="color:var(--accent); font-weight:700">Lue lisää →</span>
-          </a>
-        ))}
+  {ryhmat.map((r) => (
+    <section class="section">
+      <div class="container" style="max-width:900px">
+        <h2 style="text-align:left">{r.alue.label} <span style="color:var(--muted); font-weight:500; font-size:.7em">· alk. {r.alue.basePriceFrom} €</span></h2>
+        <div class="grid grid--3">
+          {r.kaupungit.map((k) => (
+            <a href={`/alueet/${k.slug}`} class="card" style="text-decoration:none">
+              <h3 style="margin:0">{k.name}</h3>
+              <span class="more">Ilmalämpöpumppu {k.inessive} →</span>
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  ))}
 
   <Cta />
 </Base>

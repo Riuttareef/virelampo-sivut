@@ -1,40 +1,102 @@
 ---
 import Base from '../layouts/Base.astro';
 import Cta from '../components/Cta.astro';
-import { SITE } from '../config';
+import { SITE, AREAS, PERUSASENNUS_SISALTYY, LISATYOT } from '../config';
 
-const rows = [
-  ["Perusasennus", `alk. ${SITE.basePriceFrom} €`, "Vakioasennus ≤4 m putkea, läpivienti, kiinnitys, sähköistys, opastus"],
-  ["Timanttiporaus (läpivienti)", "n. 350 €", "Siisti, pölytön läpivienti betoni-/tiiliseinään"],
-  ["Lisäputki", "€/m sopimuksen mukaan", "Pidemmät putkivedot"],
-  ["Lisätyöt", "tarjouksen mukaan", "Telineet, piippukotelot, sähkökeskustyöt"],
-  ["Huolto", "alk. 150 €", "Puhdistus, suodattimet, toiminnan tarkistus"],
+const sisaltyy = PERUSASENNUS_SISALTYY;
+const lisatyot = LISATYOT;
+const alueet = Object.values(AREAS);
+
+const huomioi = [
+  ["Kartoitus ja sijoittelu", "Varmistetaan yksiköiden paikat, putkireitit ja läpiviennin kohta ennen asennusta."],
+  ["Sähköpiste", "Perusasennus vaatii maadoitetun pistorasian max 2 m etäisyydeltä. Kiinteä kytkentä turvakytkimelle sovitaan erikseen."],
+  ["Taloyhtiön lupa", "Rivi- ja kerrostaloissa tarvitaan usein taloyhtiön lupa. Hanki se ennen tilausta."],
+  ["Kondenssivesi", "Kondenssivesi johdetaan hallitusti ulos. Viemäriliitäntä tai pidempi poisto lisätyönä."],
 ];
 ---
-<Base title="Hinnoittelu ja kotitalousvähennys" description="Läpinäkyvä hinnoittelu ilmalämpöpumpun asennukseen pääkaupunkiseudulla. Kotitalousvähennys huomioitu.">
+<Base title="Hinnoittelu ja kotitalousvähennys" description="Läpinäkyvä hinnoittelu ilmalämpöpumpun asennukseen. Selkeä perusasennushinta ja eritellyt lisätyöt. Kotitalousvähennys huomioitu.">
   <section class="hero">
     <div class="container">
+      <span class="pill">Selkeät hinnat etukäteen</span>
       <h1>Hinnoittelu</h1>
-      <p>Selkeät hinnat etukäteen – ja kotitalousvähennys kerrottuna valmiiksi.</p>
+      <p>Tiedät tarkasti mitä perusasennus sisältää ja mitä mahdolliset lisätyöt maksavat. Saat aina kiinteän hinnan ennen työn aloitusta.</p>
     </div>
   </section>
 
+  <!-- PERUSASENNUS -->
   <section class="section">
-    <div class="container prose" style="max-width:820px">
+    <div class="container" style="max-width:900px">
+      <div class="card">
+        <div class="price-hero">
+          <span class="amount">alk. {SITE.basePriceFrom} €</span>
+          <span class="vat">sis. alv 25,5 %</span>
+        </div>
+        <h2 style="text-align:left; margin-top:0">Perusasennus sisältää</h2>
+        <ul class="checklist">
+          {sisaltyy.map((s) => <li>{s}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALUEKOHTAISET HINNAT -->
+  <section class="section section--soft">
+    <div class="container" style="max-width:900px">
+      <h2 style="text-align:left">Perusasennuksen hinta alueittain</h2>
+      <p style="color:var(--muted); margin-top:0">Lähtöhinta vaihtelee toiminta-alueen mukaan. Tarkan kokonaishinnan saat tarjouksessa.</p>
+      <div class="grid grid--3">
+        {alueet.map((a) => (
+          <div class="card">
+            <h3>{a.label}</h3>
+            <div class="price-hero"><span class="amount">alk. {a.basePriceFrom} €</span><span class="vat">sis. alv 25,5 %</span></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LISÄTYÖT -->
+  <section class="section section--soft">
+    <div class="container" style="max-width:900px">
+      <h2 style="text-align:left">Mahdolliset lisätyöt</h2>
+      <p style="color:var(--muted); margin-top:0">Lisätyöt sovitaan aina etukäteen. Kohteet ja tarpeet selviävät kartoituksessa.</p>
       <table class="price">
-        <thead><tr><th>Palvelu</th><th>Hinta</th><th>Sisältö</th></tr></thead>
+        <thead><tr><th>Lisätyö</th><th>Hinta</th><th>Sisältö</th></tr></thead>
         <tbody>
-          {rows.map((r) => <tr><td><strong>{r[0]}</strong></td><td>{r[1]}</td><td style="color:var(--muted)">{r[2]}</td></tr>)}
+          {lisatyot.map((r) => <tr><td><strong>{r[0]}</strong></td><td style="white-space:nowrap">{r[1]}</td><td style="color:var(--muted)">{r[2]}</td></tr>)}
         </tbody>
       </table>
-      <p style="font-size:.9rem; color:var(--muted); margin-top:10px">Hinnat ovat suuntaa-antavia ja sisältävät alv:n. Saat aina tarkan, kiinteän hinnan tarjouksessa.</p>
+      <p style="font-size:.9rem; color:var(--muted); margin-top:10px">Hinnat sisältävät alv:n (25,5 %) ja ovat suuntaa-antavia. Saat tarkan, kiinteän kokonaishinnan tarjouksessa.</p>
+    </div>
+  </section>
 
-      <h2 style="text-align:left">Näin hinta muodostuu</h2>
-      <p>Asennushintaan vaikuttavat mm. putkivedon pituus, asennuskohteen kerros ja seinämateriaali sekä mahdolliset lisätyöt. Kerro tilanteesi tarjouspyynnössä, niin saat tarkan arvion.</p>
+  <!-- HYVÄ TIETÄÄ -->
+  <section class="section">
+    <div class="container" style="max-width:900px">
+      <h2 style="text-align:left">Hyvä tietää ennen asennusta</h2>
+      <div class="grid grid--2">
+        {huomioi.map((h) => (
+          <div class="card">
+            <h3>{h[0]}</h3>
+            <p style="color:var(--muted); margin:0">{h[1]}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
+  <!-- KOTITALOUSVÄHENNYS -->
+  <section class="section section--soft">
+    <div class="container" style="max-width:900px">
       <h2 style="text-align:left">Kotitalousvähennys</h2>
-      <p>Voit hyödyntää kotitalousvähennyksen asennustyön osuudesta. Vuonna 2026 vähennys on jopa 40 % työn osuudesta (enintään 2 100 € / henkilö, 150 € omavastuu). Erittelen työn osuuden laskuun automaattisesti, jotta vähennyksen hakeminen on sinulle helppoa.</p>
-      <p class="note">Tarkista voimassa oleva vähennysprosentti Verohallinnon sivuilta – muutamme tämän tiedon ajantasaiseksi ennen julkaisua.</p>
+      <p style="margin-top:0">Asennustyön osuudesta saat kotitalousvähennyksen verotuksessa. Koska laskutamme vain asennustyön – emme itse laitetta – käytännössä lähes koko laskusi oikeuttaa vähennykseen. Erittelemme työn osuuden valmiiksi laskuun, jotta vähennyksen saa vaivatta.</p>
+      <div class="card">
+        <h3>Vakioasennus (2026–2027)</h3>
+        <div class="price-hero"><span class="amount">40 %</span><span class="vat">työn osuudesta</span></div>
+        <p style="color:var(--muted); margin:0">Enintään 2 100 € / henkilö vuodessa. Omavastuu 150 € / henkilö.</p>
+      </div>
+      <p class="note">Esimerkki (vakioasennus): jos asennustyön osuus on 700 €, vähennys on 40 % = 280 €, josta vähennetään 150 € omavastuu → verohyöty noin 130 €. Pariskunnalla omavastuu ja enimmäismäärä lasketaan kummallekin erikseen, jolloin hyöty on usein suurempi. Laske oma tilanteesi <a href="https://www.vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/47873/kotitalousvahennys-verotuksessa5/" target="_blank" rel="noopener">Verohallinnon ohjeesta</a>.</p>
+      <p style="font-size:.85rem; color:var(--muted); margin-top:8px">Korotus 35 % → 40 % ja 1 600 € → 2 100 € on määräaikainen (vuodet 2026–2027) ja tulee voimaan takautuvasti 1.1.2026. Muutos on hallituksen esitys, jonka eduskunnan vahvistus on vielä kesken – varmistamme luvut ennen julkaisua.</p>
     </div>
   </section>
 

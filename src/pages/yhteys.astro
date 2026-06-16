@@ -2,11 +2,11 @@
 import Base from '../layouts/Base.astro';
 import { SITE } from '../config';
 ---
-<Base title="Pyydä tarjous" description="Pyydä maksuton tarjous ilmalämpöpumpun asennuksesta pääkaupunkiseudulla.">
+<Base title="Pyydä tarjous" description="Pyydä maksuton tarjous ilmalämpöpumpun asennuksesta.">
   <section class="hero">
     <div class="container">
       <h1>Pyydä maksuton tarjous</h1>
-      <p>Täytä lyhyt lomake, niin otan sinuun yhteyttä. {SITE.responsePromise}</p>
+      <p>Täytä lyhyt lomake, niin otamme sinuun yhteyttä. {SITE.responsePromise}</p>
     </div>
   </section>
 
@@ -35,7 +35,7 @@ import { SITE } from '../config';
           </div>
           <div>
             <label for="alue">Paikkakunta / alue *</label>
-            <input id="alue" name="alue" placeholder="esim. Espoo, Leppävaara" required />
+            <input id="alue" name="alue" placeholder="esim. kaupunki ja kaupunginosa" required />
           </div>
           <div>
             <label for="palvelu">Mitä tarvitset?</label>
@@ -51,7 +51,7 @@ import { SITE } from '../config';
             <textarea id="viesti" name="viesti" placeholder="Talotyyppi, toivottu sijainti laitteelle, mahdolliset kysymykset..."></textarea>
           </div>
           <button type="submit" class="btn btn--cta btn--block">Lähetä tarjouspyyntö</button>
-          <p style="font-size:.85rem; color:var(--muted)">Lähettämällä hyväksyt, että otan sinuun yhteyttä tarjousta varten.</p>
+          <p style="font-size:.85rem; color:var(--muted)">Lähettämällä hyväksyt, että otamme sinuun yhteyttä tarjousta varten.</p>
         </form>
       </div>
 

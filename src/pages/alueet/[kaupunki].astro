@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { SITE, AREAS, LOCATIONS, priceForLocation } from '../../config';
+import type { Location } from '../../config';
+
+export function getStaticPaths() {
+  return LOCATIONS.map((loc) => ({
+    params: { kaupunki: loc.slug },
+    props: { loc },
+  }));
+}
+
+interface Props { loc: Location }
+const { loc } = Astro.props;
+const hinta = priceForLocation(loc);
+const alue = AREAS[loc.area];
+
+// Saman alueen muut kaupungit ristiinlinkitykseen
+const naapurit = LOCATIONS.filter((l) => l.area === loc.area && l.slug !== loc.slug);
+
+// Sivukohtainen LocalBusiness-schema palvelualueineen
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  name: `${SITE.name} – ilmalämpöpumput ${loc.inessive}`,
+  description: loc.lead,
+  url: `https://${SITE.domain}/alueet/${loc.slug}`,
+  areaServed: { "@type": "City", name: loc.name },
+  email: SITE.email,
+  ...(SITE.showPhone ? { telephone: SITE.phoneHref.replace('tel:', '') } : {}),
+  makesOffer: {
+    "@type": "Offer",
+    priceCurrency: "EUR",
+    price: hinta,
+    itemOffered: { "@type": "Service", name: `Ilmalämpöpumpun asennus ${loc.inessive}` },
+  },
+};
+
+const title = `Ilmalämpöpumpun asennus ${loc.inessive}`;
+---
+<Base title={title} description={loc.lead} schema={schema}>
+  <section class="hero">
+    <div class="container">
+      <span class="pill">{alue.label} · alk. {hinta} €</span>
+      <h1>Ilmalämpöpumpun asennus {loc.inessive}</h1>
+      <p>{loc.lead}</p>
+      <div class="actions">
+        <a href="/yhteys" class="btn btn--cta">Pyydä maksuton tarjous →</a>
+        {SITE.showPhone && <a href={SITE.phoneHref} class="btn btn--ghost">Soita {SITE.phone}</a>}
+      </div>
+      <p class="mini">{SITE.responsePromise}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p>{loc.body}</p>
+
+      <h2 style="text-align:left">Miksi valita meidät {loc.inessive}</h2>
+      <ul>
+        {loc.highlights.map((h) => <li>{h}</li>)}
+      </ul>
+
+      <p class="note">Perusasennus {loc.inessive} alkaen <strong>{hinta} €</strong> (alue: {alue.label}). Kotitalousvähennyksen jälkeen nettohinta on selvästi alhaisempi – katso <a href="/hinnoittelu">hinnoittelu ja lisätyöt</a> sekä <a href="/asennus">mitä asennukseen kuuluu</a>.</p>
+
+      <h2 style="text-align:left">Tukes-pätevä ja vakuutettu asentaja</h2>
+      <p>Meillä on kylmäalan pätevyys ja sähköalan S2-pätevyys, ja työ on vakuutettu. Saat kiinteän hinnan etukäteen, siistin jäljen ja opastuksen laitteen käyttöön. Pätevyyden voi tarkistaa Tukesin rekisteristä.</p>
+    </div>
+  </section>
+
+  {naapurit.length > 0 && (
+    <section class="section section--soft">
+      <div class="container" style="max-width:900px">
+        <h2 style="text-align:left">Palvelemme myös lähialueilla</h2>
+        <p style="color:var(--muted); margin-top:0">Toiminta-alue {alue.label}:</p>
+        <div class="grid grid--3">
+          {naapurit.map((n) => (
+            <a href={`/alueet/${n.slug}`} class="card" style="text-decoration:none">
+              <h3 style="margin:0">{n.name}</h3>
+              <span class="more">Ilmalämpöpumppu {n.inessive} →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Cta title={`Pyydä tarjous – ilmalämpöpumppu ${loc.inessive}`} />
+</Base>

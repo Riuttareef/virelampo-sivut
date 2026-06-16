@@ -1,0 +1,107 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { SITE } from '../../config';
+
+const checklist = [
+  "Päätä pääkäyttötarkoitus: lämmitys, jäähdytys vai molemmat",
+  "Tarkista laitteen lämpöteho juuri sinun pakkasilla (esim. −15 °C), älä vain SCOP-lukua",
+  "Varmista alin toimintalämpötila (useilla −25…−30 °C)",
+  "Katso sisä- ja ulkoyksikön äänitaso (dB) – tärkeää makuuhuoneen tai naapurin lähellä",
+  "Mietitään sisäyksikön paikka niin, että ilma kiertää koko tilaan",
+  "Loma-asuntoon: etäohjaus (wifi) ja ylläpitolämmön toiminta",
+  "Pyydä mitoitus ammattilaiselta talon koon ja eristyksen mukaan",
+];
+
+const faq = [
+  {
+    q: "Riittääkö yksi ilmalämpöpumppu koko taloon?",
+    a: "Avoimessa pohjaratkaisussa yksi hyvin sijoitettu pumppu lämmittää ja viilentää suuren osan asuinpinta-alasta. Jos talossa on paljon erillisiä huoneita tai suljettuja ovia, lämpö ja viileys eivät kanna joka huoneeseen – silloin kannattaa harkita sijoittelua tai useampaa sisäyksikköä.",
+  },
+  {
+    q: "Kannattaako loma-asuntoon eri laite kuin vakituiseen kotiin?",
+    a: "Loma-asunnossa korostuvat etäohjaus ja luotettava ylläpitolämpö (esim. +7…+10 °C), jotta paikka pysyy kuivana ja lämpiää nopeasti tullessa. Vakituisessa kodissa painottuu enemmän koko lämmityskauden hyötysuhde ja pakkasteho.",
+  },
+];
+
+const updated = "2026-06-16";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Lämmitys, jäähdytys vai molemmat? Näin valitset ilmalämpöpumpun",
+  description: "Opas omakoti- ja loma-asuntojen ilmalämpöpumpun valintaan: miten käyttötarkoitus ohjaa laitevalintaa ja mihin kannattaa kiinnittää huomiota.",
+  author: { "@type": "Organization", name: SITE.name },
+  publisher: { "@type": "Organization", name: SITE.name, "@id": `https://${SITE.domain}/#business` },
+  mainEntityOfPage: `https://${SITE.domain}/hyva-tietaa/lampopumpun-valinta`,
+  dateModified: updated,
+};
+---
+<Base
+  title="Lämmitys, jäähdytys vai molemmat? Ilmalämpöpumpun valinta"
+  description="Opas omakoti- ja loma-asuntojen ilmalämpöpumpun valintaan: käyttötarkoitus ratkaisee laitevalinnan. Pakkasteho, äänitaso, mitoitus ja sijoittelu."
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container">
+      <span class="pill">Omakoti &amp; loma-asunto</span>
+      <h1>Lämmitys, jäähdytys vai molemmat?</h1>
+      <p>Oikea ilmalämpöpumppu valitaan käyttötarkoituksen mukaan. Tässä oppaassa käymme läpi, mihin kannattaa kiinnittää huomiota omakoti- ja loma-asunnossa.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p><a href="/hyva-tietaa">← Hyvä tietää</a></p>
+
+      <p>Ilmalämpöpumppuja markkinoidaan usein pelkillä hyötysuhdeluvuilla, mutta paras laite riippuu siitä, <strong>mihin sitä pääasiassa käytät</strong>. Lämmitykseen painottuva ympärivuotinen koti, kesän viileyttä kaipaava asunto ja vain ajoittain käytössä oleva loma-asunto asettavat laitteelle eri vaatimukset. Kun käyttötarkoitus on selvä, valinta helpottuu huomattavasti.</p>
+
+      <h2 style="text-align:left">1. Mihin käytät pumppua?</h2>
+      <p><strong>Pääosin lämmitykseen.</strong> Tavoitteena pienemmät lämmityskustannukset koko vuoden. Tärkeintä on teho pakkasilla ja hyvä lämmityskauden hyötysuhde. Tyypillinen omakotitalo, jossa on suora sähkölämmitys tai vanhempi lämmitysjärjestelmä tukena.</p>
+      <p><strong>Pääosin jäähdytykseen.</strong> Tavoitteena viileä koti kesän helteillä ja parempi nukkuminen. Tärkeintä on riittävä jäähdytysteho, hiljainen käyntiääni ja sisäyksikön hyvä sijoitus. Lämmitys on tällöin lisähyöty siellä, missä se on sallittu.</p>
+      <p><strong>Molempiin.</strong> Yleisin tilanne omakotitalossa: pumppu tuo lämmityssäästöt talvella ja jäähdytyksen kesällä. Tällöin haetaan tasapainoa – laitetta, joka pärjää pakkasilla mutta jäähdyttää myös tehokkaasti.</p>
+
+      <h2 style="text-align:left">2. Lämmitys edellä – mitä katsoa</h2>
+      <ul>
+        <li><strong>Lämpöteho pakkasilla.</strong> Älä tuijota pelkkää SCOP-lukua. Katso, paljonko laite tuottaa lämpöä juuri sinun pakkasilla (esim. teho −15 °C:ssa). Teho laskee aina kylmetessä – ratkaisevaa on, riittääkö se silloin kun lämpöä eniten tarvitaan.</li>
+        <li><strong>Alin toimintalämpötila.</strong> Useimmat laadukkaat pumput toimivat noin −25…−30 °C:een. Tarkista, että laite kattaa paikkakuntasi kovimmat pakkaset.</li>
+        <li><strong>Sulatustoiminto.</strong> Pakkasella ulkoyksikköön muodostuu huurretta, jonka laite sulattaa automaattisesti. Hyvä sulatuksen hallinta pitää hyötysuhteen korkeammalla.</li>
+      </ul>
+      <p class="note">Suomi kuuluu kylmään ilmastovyöhykkeeseen, joten esitteen SCOP-luku on usein korkeampi kuin todellinen vuosihyötysuhde täällä. Lue lisää <a href="/hyva-tietaa/energiansaasto-laskelmat">energiansäästö-artikkelista</a>.</p>
+
+      <h2 style="text-align:left">3. Jäähdytys edellä – mitä katsoa</h2>
+      <ul>
+        <li><strong>Jäähdytysteho.</strong> Mitoitetaan jäähdytettävän tilan koon ja auringonpuoleisuuden mukaan. Lievä ylimitoitus ei haittaa – inverterilaite käy silloin pienemmillä kierroksilla, jolloin se on hiljaisempi ja kuormittuu vähemmän, mikä voi jopa pidentää käyttöikää. Vältä kuitenkin reilua ali- tai ylimitoitusta: alimitoitettu ei viilennä riittävästi, ja selvästi ylimitoitettu maksaa turhaan.</li>
+        <li><strong>Äänitaso.</strong> Kesällä laite käy juuri silloin kun ikkunat ovat auki ja nukutaan. Katso sekä sisä- että ulkoyksikön desibelit, etenkin makuuhuoneen lähellä.</li>
+        <li><strong>Sisäyksikön sijoitus.</strong> Viileän ilman pitää päästä leviämään tasaisesti – väärä paikka tuntuu vedolta yhdessä kohdassa ja jättää muut tilat lämpimiksi.</li>
+      </ul>
+
+      <h2 style="text-align:left">4. Loma-asunnon erityishuomiot</h2>
+      <p>Loma-asunnossa pumppu on usein käytössä vain ajoittain, joten korostuvat eri asiat kuin vakituisessa kodissa:</p>
+      <ul>
+        <li><strong>Ylläpitolämpö.</strong> Laite pitää mökin sopivassa peruslämmössä (esim. +7…+10 °C) myös poissa ollessa – tämä pitää tilat kuivina ja estää kosteusvauriot.</li>
+        <li><strong>Etäohjaus.</strong> Wifi-ohjauksella lämmität mökin valmiiksi jo ennen saapumista.</li>
+        <li><strong>Kosteudenpoisto.</strong> Pumppu tasaa kosteutta, mikä on iso etu kausikäytössä olevassa rakennuksessa.</li>
+      </ul>
+
+      <h2 style="text-align:left">5. Mitoitus ja sijoittelu ratkaisevat</h2>
+      <p>Paraskaan laite ei toimi hyvin, jos se on väärin mitoitettu tai huonosti sijoitettu. Teho valitaan talon koon, eristyksen ja pohjaratkaisun mukaan, ja sisäyksikkö sijoitetaan niin, että ilma kiertää koko tilaan. Tässä ammattilaisen mitoitus maksaa itsensä takaisin – väärä valinta näkyy heti hyötysuhteessa ja mukavuudessa.</p>
+
+      <h2 style="text-align:left">Tarkistuslista ennen ostoa</h2>
+      <ul class="checklist">
+        {checklist.map((c) => <li>{c}</li>)}
+      </ul>
+
+      <h2 style="text-align:left">Usein kysyttyä</h2>
+      {faq.map((f) => (
+        <div style="margin-bottom:14px">
+          <h3 style="margin-bottom:.2em">{f.q}</h3>
+          <p style="color:var(--muted)">{f.a}</p>
+        </div>
+      ))}
+
+      <p style="color:var(--muted);font-size:.86rem;margin-top:28px">Päivitetty {updated}. Autamme mielellämme oikean laitteen valinnassa ja mitoituksessa.</p>
+    </div>
+  </section>
+
+  <Cta title="Tarvitsetko apua laitteen valinnassa?" />
+</Base>

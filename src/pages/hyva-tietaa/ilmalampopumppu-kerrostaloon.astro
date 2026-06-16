@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { SITE } from '../../config';
+
+const checklist = [
+  "Hae lupa taloyhtiöltä (hallitukselta) ennen tilausta",
+  "Valitse jäähdytyskäyttöön tarkoitettu laite – ei lämmityskäyttöä",
+  "Selvitä, vaatiiko asennus toimenpideluvan kaupungilta",
+  "Sovi ulkoyksikön paikka parvekkeella (lattialle kumitassujen päälle)",
+  "Varmista kondenssiveden hallittu ohjaus (sadevesijärjestelmä tai erillinen keräysastia)",
+  "Käytä ammattiasentajaa – siisti, sääntöjen mukainen asennus",
+];
+
+const faq = [
+  {
+    q: "Voinko lämmittää asuntoa ilmalämpöpumpulla kerrostalossa?",
+    a: "Pääsääntöisesti et. Kerrostaloasunnoissa sallitaan tavallisesti vain jäähdytyskäyttö, ei lämmitystä – lämmitys kuuluu taloyhtiön järjestelmään. Asennetaan siis jäähdytykseen tarkoitettu laite, ja taloyhtiön linjaus ratkaisee.",
+  },
+  {
+    q: "Voiko naapuri estää asennuksen?",
+    a: "Ei – asennuksesta päättää taloyhtiö, ei yksittäinen naapuri. Ulkoyksikkö asennetaan parvekkeelle, eikä se vaadi naapurin lupaa.",
+  },
+  {
+    q: "Voinko asentaa jäähdytyskoneen, jos asunnossa ei ole parveketta?",
+    a: "Ei. Ulkoyksikkö asennetaan kerrostalossa parvekkeen lattialle, joten ilman parveketta sille ei ole sallittua asennuspaikkaa – julkisivuun asentamista ei kerrostaloissa yleensä sallita.",
+  },
+];
+
+const updated = "2026-06-16";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Ilmalämpöpumppu kerrostaloon – jäähdytys, luvat ja taloyhtiön vaatimukset",
+  description: "Kerrostalossa sallitaan vain jäähdytys, ei lämmitystä. Opas taloyhtiön lupaan, mahdolliseen toimenpidelupaan ja kerrostaloasennuksen erityispiirteisiin.",
+  author: { "@type": "Organization", name: SITE.name },
+  publisher: { "@type": "Organization", name: SITE.name, "@id": `https://${SITE.domain}/#business` },
+  mainEntityOfPage: `https://${SITE.domain}/hyva-tietaa/ilmalampopumppu-kerrostaloon`,
+  dateModified: updated,
+};
+---
+<Base
+  title="Ilmalämpöpumppu kerrostaloon – jäähdytys, luvat ja taloyhtiö"
+  description="Kerrostalossa sallitaan vain jäähdytys, ei lämmitystä. Opas taloyhtiön lupaan, toimenpidelupaan, ulkoyksikön sijoitukseen ja kondenssiveteen."
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container">
+      <span class="pill">Kerrostalo</span>
+      <h1>Ilmalämpöpumppu kerrostaloon</h1>
+      <p>Kerrostalossa pätevät omat säännöt: sallittua on vain jäähdytys, ja taloyhtiöllä on sanansa asiaan. Käydään läpi luvat ja erityisvaatimukset.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p><a href="/hyva-tietaa">← Hyvä tietää</a></p>
+
+      <h2 style="text-align:left">Vain jäähdytys – ei lämmitystä</h2>
+      <p>Tärkein ero omakotitaloon: <strong>kerrostaloasunnossa ilmalämpöpumppua käytetään vain jäähdytykseen, ei lämmitykseen.</strong> Asunnon lämmitys kuuluu taloyhtiön järjestelmään, joten asennetaan jäähdytyskäyttöön tarkoitettu laite. Tämä on syytä varmistaa heti alussa, sillä se vaikuttaa sekä laitevalintaan että lupaan.</p>
+
+      <h2 style="text-align:left">Taloyhtiön lupa tarvitaan aina</h2>
+      <p>Koska asennus koskee rakennuksen rakenteita ja julkisivua, tarvitaan taloyhtiön (hallituksen) lupa ennen työn aloittamista. Vuoden 2020 asunto-osakeyhtiölain muutos helpotti tilannetta: <strong>taloyhtiö ei voi kieltää asennusta ilman painavia perusteita</strong> – kielto on mahdollinen vain, jos asennuksesta aiheutuu kohtuutonta haittaa suhteessa osakkaan saamaan hyötyyn.</p>
+
+      <h2 style="text-align:left">Mahdollinen toimenpidelupa</h2>
+      <p>Osassa kunnista ja kohteista asennus vaatii taloyhtiön luvan lisäksi <strong>toimenpideluvan kaupungilta</strong>, koska ulkoyksikkö muuttaa julkisivua. Tämä kannattaa selvittää etukäteen, sillä se pidentää aikataulua.</p>
+
+      <h2 style="text-align:left">Asennuksen tekniset huomiot</h2>
+      <ul>
+        <li><strong>Sijoitus.</strong> Ulkoyksikkö asennetaan parvekkeen lattialle kumitassujen päälle. Parvekeasennus ei muuta rakennuksen julkisivua.</li>
+        <li><strong>Läpivienti.</strong> Putkien läpivienti riippuu parvekkeen seinän runkomateriaalista. Kivirakenteinen seinä vaatii aina lisähintaisen timanttiporauksen – sen hinnan näet <a href="/hinnoittelu">hinnoittelusta</a>.</li>
+        <li><strong>Kondenssivesi.</strong> Jäähdytyksessä syntyvä lauhdevesi pitää ohjata hallitusti, eikä se saa valua julkisivulle tai naapurin parvekkeelle. Ratkaisu riippuu taloyhtiöstä: jos parvekkeella on sadevesijärjestelmä, vesi voidaan johtaa siihen. Monissa taloyhtiöissä vesi ohjataan ulkoyksikön viereen erilliseen keräysastiaan, joka pitää itse tyhjentää. Astia voi olla myös automatisoitu niin, että se katkaisee laitteelta virran, kun astia on täynnä.</li>
+        <li><strong>Sähköliitäntä.</strong> Sähkönsyöttö ja siihen liittyvät tarpeet ratkaistaan aina tapauskohtaisesti taloyhtiön iän ja sähköpaikkojen saatavuuden mukaan. Toteutamme kokonaisuuden avaimet käteen -periaatteella – hinta sovitaan etukäteen, ei yllätyksiä.</li>
+      </ul>
+
+      <h2 style="text-align:left">Vastuu laitteesta</h2>
+      <p>Osakas vastaa itse asentamansa laitteen huollosta ja kunnossapidosta. Hyvin asennettu ja säännöllisesti huollettu laite pysyy hiljaisena ja toimii pitkään.</p>
+
+      <h2 style="text-align:left">Näin etenet</h2>
+      <p class="note"><strong>Helpoin tapa aloittaa:</strong> ota kuva parvekkeesta ja sisäyksikön suunnitellusta paikasta ja <a href="/yhteys">lähetä se meille</a>{SITE.showPhone ? ' – tai soita' : ''}. Kerromme nopeasti, mikä on mahdollista ja mitä se maksaa.</p>
+      <ul class="checklist">
+        {checklist.map((c) => <li>{c}</li>)}
+      </ul>
+      <p class="note">Taloyhtiökohtaiset säännöt vaihtelevat. Tarkista aina oman taloyhtiösi ohjeet – autamme mielellämme lupahakemuksessa ja oikean laitteen valinnassa.</p>
+
+      <h2 style="text-align:left">Usein kysyttyä</h2>
+      {faq.map((f) => (
+        <div style="margin-bottom:14px">
+          <h3 style="margin-bottom:.2em">{f.q}</h3>
+          <p style="color:var(--muted)">{f.a}</p>
+        </div>
+      ))}
+
+      <p style="color:var(--muted);font-size:.86rem;margin-top:28px">Päivitetty {updated}. Autamme kerrostaloasennuksen luvissa ja toteutuksessa.</p>
+    </div>
+  </section>
+
+  <Cta title="Suunnitteletko jäähdytystä kerrostaloon?" />
+</Base>

@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cta from '../../components/Cta.astro';
+import { SITE } from '../../config';
+
+// Hyvä tietää -artikkelit. live=false → näkyy "Tulossa", ei vielä linkkiä.
+const articles = [
+  {
+    slug: "lampopumpun-valinta",
+    title: "Lämmitys, jäähdytys vai molemmat? Näin valitset ilmalämpöpumpun",
+    lead: "Käyttötarkoitus ratkaisee laitevalinnan. Opas omakoti- ja loma-asuntojen pumpun valintaan – mihin kannattaa kiinnittää huomiota.",
+    tag: "Omakoti & loma-asunto",
+    icon: '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/>',
+    live: true,
+  },
+  {
+    slug: "energiansaasto-laskelmat",
+    title: "Paljonko ilmalämpöpumppu säästää? Vinkit ja laskelmat lämmityskaudelle",
+    lead: "Miten säästö syntyy, mikä on realistinen hyötysuhde Suomessa, ja esimerkkilaskelma suorasähkölämmitykseen verrattuna.",
+    tag: "Energiansäästö",
+    icon: '<circle cx="12" cy="12" r="8.5"/><path d="M15 9a3.8 3.8 0 1 0 0 6"/><line x1="7.5" y1="11" x2="13" y2="11"/><line x1="7.5" y1="13.4" x2="12" y2="13.4"/>',
+    live: true,
+  },
+  {
+    slug: "kylmaaineet-r410a-r32-r290",
+    title: "Kylmäaineet R410A, R32 ja R290 – mikä muuttui ja mitä se tarkoittaa sinulle",
+    lead: "Miksi kylmäaineet vaihtuvat, mitä se merkitsee kuluttajalle ja ilmastolle, ja miten ne eroavat teholtaan pakkasilla.",
+    tag: "Tekniikka",
+    icon: '<path d="M12 3.5s5.5 6 5.5 10.5a5.5 5.5 0 0 1-11 0C6.5 9.5 12 3.5 12 3.5z"/>',
+    live: true,
+  },
+  {
+    slug: "miksi-vaihtaa-vanha-ilmalampopumppu",
+    title: "Miksi 10 vuotta vanha ilmalämpöpumppu kannattaa vaihtaa",
+    lead: "Uusi R290-laite tuottaa enemmän lämpöä vähemmällä sähköllä ja jaksaa pakkasellakin. Merkit vaihdolle ja esimerkkilaskelmat säästöistä.",
+    tag: "Koneen vaihto",
+    icon: '<path d="M17 4v13"/><path d="M21 13.5 17 17.5 13 13.5"/><path d="M7 20V7"/><path d="M3 10.5 7 6.5 11 10.5"/>',
+    live: true,
+  },
+  {
+    slug: "ilmalampopumppu-kerrostaloon",
+    title: "Ilmalämpöpumppu kerrostaloon – jäähdytys, luvat ja taloyhtiön vaatimukset",
+    lead: "Kerrostalossa sallitaan vain jäähdytys – ei lämmitystä. Käymme läpi luvat, taloyhtiön vaatimukset ja asennuksen erityispiirteet.",
+    tag: "Kerrostalo",
+    icon: '<rect x="5" y="3" width="14" height="18" rx="1.2"/><line x1="9" y1="7" x2="9" y2="7"/><line x1="15" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="9" y2="11"/><line x1="15" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="9" y2="15"/><line x1="15" y1="15" x2="15" y2="15"/><path d="M11 21v-3h2v3"/>',
+    live: true,
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Hyvä tietää – ilmalämpöpumppuopas",
+  description: "Asiantuntija-artikkelit ilmalämpöpumpun valinnasta, energiansäästöstä, kylmäaineista ja kerrostaloasennuksesta.",
+  url: `https://${SITE.domain}/hyva-tietaa`,
+};
+---
+<Base
+  title="Hyvä tietää"
+  description="Ilmalämpöpumppuopas: laitteen valinta, energiansäästö ja laskelmat, kylmäaineet sekä kerrostaloasennus. Selkeää tietoa asiantuntijalta."
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container">
+      <span class="pill">Ilmalämpöpumppuopas</span>
+      <h1>Hyvä tietää</h1>
+      <p>Selkeää, asiantuntijan kirjoittamaa tietoa ilmalämpöpumpun valinnasta, säästöistä ja asennuksesta – ilman myyntipuhetta.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2">
+        {articles.map((a) => (
+          a.live ? (
+            <a href={`/hyva-tietaa/${a.slug}`} class="card artcard">
+              <div class="artcard__head">
+                <div class="iconchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={a.icon} /></div>
+                <span class="artcard__tag">{a.tag}</span>
+              </div>
+              <h3>{a.title}</h3>
+              <p>{a.lead}</p>
+              <span class="more">Lue artikkeli</span>
+            </a>
+          ) : (
+            <div class="card artcard artcard--soon">
+              <div class="artcard__head">
+                <div class="iconchip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={a.icon} /></div>
+                <span class="artcard__tag">{a.tag}</span>
+              </div>
+              <h3>{a.title}</h3>
+              <p>{a.lead}</p>
+              <span class="artcard__soon">Tulossa pian</span>
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta title="Kysy lisää – autamme mielellämme" />
+</Base>
+
+<style>
+  .artcard { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: inherit; }
+  .artcard__head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  .artcard h3 { margin: 4px 0 2px; font-size: 1.22rem; }
+  .artcard p { color: var(--muted); font-size: .95rem; margin: 0 0 8px; }
+  .artcard__tag {
+    background: var(--green-soft); color: var(--green-d);
+    font-family: var(--font-head); font-weight: 700; font-size: .72rem; letter-spacing: .3px;
+    text-transform: uppercase; padding: 5px 11px; border-radius: 999px;
+  }
+  .artcard .more { margin-top: auto; }
+  .artcard--soon { opacity: .72; }
+  .artcard__soon {
+    margin-top: auto; align-self: flex-start; font-family: var(--font-head); font-weight: 700;
+    font-size: .82rem; color: var(--muted); border: 1px dashed var(--line); border-radius: 999px; padding: 4px 12px;
+  }
+</style>
