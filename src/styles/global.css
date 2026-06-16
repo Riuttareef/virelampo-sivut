@@ -199,7 +199,11 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 1rem; transform: skewX(-6deg);
 }
 .hdr .mark span { transform: skewX(6deg); }
-.hdr .brand-logo { height: 38px; width: auto; display: block; }
+.hdr .brand-logo { height: 48px; width: auto; display: block; }
+.hdr .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.hdr .brand-name { font-size: 1.5rem; font-weight: 800; }
+.hdr .brand-slogan { font-size: .72rem; font-weight: 600; color: var(--accent); letter-spacing: .005em; margin-top: 1px; white-space: nowrap; }
+.hdr .hdr-cta .btn--cta { display: none; }
 .hdr nav { display: none; gap: 22px; }
 .hdr nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: .92rem; }
 .hdr nav a:hover { color: var(--green); }
@@ -279,6 +283,10 @@ body.menu-open { overflow: hidden; }
   .hdr .menu-btn { display: none; }
   .mobile-menu { display: none; }
   .hdr .phone-label { display: inline; }
+  .hdr .brand-logo { height: 38px; }
+  .hdr .brand-name { font-size: 1.2rem; }
+  .hdr .brand-slogan { display: none; }
+  .hdr .hdr-cta .btn--cta { display: inline-flex; }
 }
 
 /* ---- Sticky mobile CTA ---- */
