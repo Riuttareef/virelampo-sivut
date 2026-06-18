@@ -191,10 +191,20 @@ img { max-width: 100%; height: auto; display: block; }
   .price--stack td { padding: 0; border: none; white-space: normal !important; }
   .price--stack td:nth-child(1) { font-size: 1.02rem; margin-bottom: 2px; }
   .price--stack td:nth-child(2) { color: var(--blue); font-weight: 600; margin-bottom: 4px; }
-  /* Vertailutaulukot: pysyvät taulukkoina, pienempi fontti ja vaakavieritys jos ei mahdu */
-  .price:not(.price--stack) { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .price:not(.price--stack) th, .price:not(.price--stack) td { padding: 10px 12px; font-size: .9rem; }
+  /* Vertailutaulukot mobiilissa: solut yhdelle riville, jotta taulukko vierii siististi */
+  .tbl__scroll > .price th, .tbl__scroll > .price td { white-space: nowrap; font-size: .9rem; padding: 10px 12px; }
 }
+
+/* ---- Vaakavieritettävä vertailutaulukko (artikkelit) ---- */
+.tbl { margin: 0 0 1.4em; }
+.tbl__scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tbl__scroll > .price { margin: 0; }
+/* "Vedä sivuttain" -vihje: näkyy vain kun JS havaitsee ylivuodon (.has-scroll) */
+.tbl::before {
+  content: "↔ Vedä taulukkoa sivuttain";
+  display: none; font-size: .82rem; color: var(--muted); font-weight: 600; margin-bottom: 6px;
+}
+.tbl.has-scroll::before { display: block; }
 
 /* ---- Form ---- */
 .form { display: grid; gap: 14px; max-width: 560px; }

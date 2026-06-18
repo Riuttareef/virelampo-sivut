@@ -1,6 +1,6 @@
 import { a as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead, d as addAttribute } from '../chunks/astro/server_aS10jzg8.mjs';
 import 'kleur/colors';
-import { $ as $$Base } from '../chunks/Base_CycD1uBN.mjs';
+import { $ as $$Base } from '../chunks/Base_Ch2ieEKu.mjs';
 import { $ as $$Cta } from '../chunks/Cta_DPH9KnDk.mjs';
 import { A as AREAS, L as LOCATIONS } from '../chunks/config_Bdb_4Kqe.mjs';
 export { renderers } from '../renderers.mjs';

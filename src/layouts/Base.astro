@@ -126,6 +126,18 @@ const orgSchema = {
           io.observe(el);
         });
       }
+
+      // ---- Vaakavieritettävät vertailutaulukot: näytä "vedä sivuttain" -vihje
+      //      vain kun taulukko oikeasti ylittää ruudun leveyden. ----
+      const updTables = () => {
+        document.querySelectorAll('.tbl').forEach((t) => {
+          const sc = t.querySelector('.tbl__scroll');
+          if (sc) t.classList.toggle('has-scroll', sc.scrollWidth - sc.clientWidth > 2);
+        });
+      };
+      updTables();
+      window.addEventListener('resize', updTables, { passive: true });
+      window.addEventListener('load', updTables);
     </script>
   </body>
 </html>
