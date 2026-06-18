@@ -14,11 +14,15 @@
   --green-l: #3A93A8;     /* lighter teal (hover) */
   --green-d: #2A5562;     /* dark teal (ghost btn text, accents) */
   --green-soft: #E6EEF2;  /* cool light fill */
+  --copper: #C2702F;      /* warm accent (lämpö) */
+  --copper-d: #9A4E1A;    /* deep copper (text on light) */
+  --copper-l: #D98A4E;    /* light copper (hover) */
+  --copper-soft: #F4E6DA; /* warm light fill */
   --ink: #1c2630;
   --muted: #5b6675;
   --line: #e6ebf1;
   --bg: #ffffff;
-  --bg-soft: #EFF4F8;     /* cool sky-tinted soft bg */
+  --bg-soft: #F4ECE4;     /* warm light soft bg */
   --ok: #2E7D91;          /* teal (checkmarks/success) */
   --radius: 16px;
   --radius-sm: 12px;
@@ -26,6 +30,7 @@
   --shadow: 0 12px 32px rgba(15, 45, 90, 0.08);
   --shadow-card: 0 16px 38px rgba(15, 45, 90, 0.12);
   --grad: linear-gradient(135deg, #1E2C39 0%, #2F4156 42%, #567C8D 118%);
+  --grad-warm: linear-gradient(135deg, #A8531C 0%, #C2702F 52%, #D98A4E 120%);
   --font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-head: 'Space Grotesk', var(--font);
 }
@@ -67,7 +72,7 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: .95rem;
 }
 .btn:active { transform: translateY(1px); }
-.btn--cta { background: var(--grad); color: #fff; box-shadow: 0 8px 20px rgba(20, 80, 120, .22); }
+.btn--cta { background: var(--grad-warm); color: #fff; box-shadow: 0 8px 20px rgba(120, 70, 25, .26); }
 .btn--cta:hover { box-shadow: 0 10px 26px rgba(20, 80, 120, .3); }
 .btn--ghost { background: #fff; color: var(--green-d); border: 1.5px solid var(--accent-l); }
 .btn--ghost:hover { border-color: var(--green); }
@@ -126,7 +131,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* Premium icon chip – subtle "soft depth" (not neumorphic: icon stays
    white on a saturated gradient = high contrast & clear). */
 .scard .ic, .iconchip {
-  position: relative; border-radius: 14px; background: var(--grad);
+  position: relative; border-radius: 14px; background: var(--grad-warm);
   display: grid; place-items: center; color: #fff; overflow: hidden;
   box-shadow: 0 6px 15px rgba(46, 125, 145, .30),
               inset 0 1px 0 rgba(255, 255, 255, .30),
@@ -150,7 +155,7 @@ img { max-width: 100%; height: auto; display: block; }
 .trust .item { display: flex; gap: 13px; align-items: flex-start; }
 .trust .tick {
   flex: 0 0 30px; width: 30px; height: 30px; border-radius: 50%;
-  background: var(--green); color: #fff; display: grid; place-items: center; font-weight: 800;
+  background: var(--copper); color: #fff; display: grid; place-items: center; font-weight: 800;
 }
 .trust .item strong { display: block; font-family: var(--font-head); color: var(--blue); margin-bottom: 2px; }
 .trust .item span { color: var(--muted); font-size: .92rem; }
@@ -160,8 +165,8 @@ img { max-width: 100%; height: auto; display: block; }
 @media (min-width: 720px) { .steps { grid-template-columns: repeat(4, 1fr); } }
 .step { position: relative; }
 .step .num {
-  width: 44px; height: 44px; border-radius: 14px; background: var(--green-soft);
-  color: var(--green-d); font-family: var(--font-head); font-weight: 800; font-size: 1.2rem;
+  width: 44px; height: 44px; border-radius: 14px; background: var(--copper-soft);
+  color: var(--copper-d); font-family: var(--font-head); font-weight: 800; font-size: 1.2rem;
   display: grid; place-items: center; margin-bottom: 12px; transform: skewX(-6deg);
 }
 
@@ -415,7 +420,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible,
 
 /* Service-card icon comes alive on hover */
 .scard .ic { transition: transform .25s cubic-bezier(.2, .7, .2, 1), box-shadow .25s ease; }
-.scard:hover .ic { transform: translateY(-2px) scale(1.06); box-shadow: 0 8px 18px rgba(46, 125, 145, .28); }
+.scard:hover .ic { transform: translateY(-2px) scale(1.06); box-shadow: 0 8px 18px rgba(168, 83, 28, .3); }
 
 /* "Lue lisää" arrow nudges on hover */
 .scard .more { display: inline-flex; align-items: center; gap: 6px; }
