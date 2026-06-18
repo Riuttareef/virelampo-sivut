@@ -339,10 +339,15 @@ body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
 .tag-list li { background: var(--green-soft); color: var(--green-d); border-radius: 999px; padding: 7px 16px; font-size: .9rem; font-weight: 600; }
 
 .prose { max-width: 720px; }
-.prose ul { padding-left: 1.2em; }
-.prose li { margin-bottom: .4em; }
+.prose ul { padding-left: 1.2em; margin: 0 0 1.4em; }
+.prose li { margin-bottom: .6em; }
+.prose p { margin-bottom: 1.15em; }
+/* Otsikoille reilu yläväli, jotta osiot erottuvat eivätkä pakkaudu yhteen */
+.prose h2 { margin-top: 1.9em; }
+.prose h3 { margin-top: 1.4em; }
+.prose > p:first-child, .prose > h2:first-child, .prose > h3:first-child { margin-top: 0; }
 
-.note { background: var(--green-soft); border-left: 4px solid var(--green); padding: 14px 18px; border-radius: 10px; }
+.note { background: var(--green-soft); border-left: 4px solid var(--green); padding: 16px 20px; border-radius: 10px; margin: 1.6em 0; }
 
 /* ---- Galleria / kuvapaikat ---- */
 .gallery { display: grid; gap: 16px; grid-template-columns: 1fr; }
@@ -364,8 +369,8 @@ body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
 .feature h2 { text-align: left; }
 
 /* ---- Checklist (mitä sisältyy) ---- */
-.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-@media (min-width: 720px) { .checklist { grid-template-columns: 1fr 1fr; gap: 12px 28px; } }
+.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
+@media (min-width: 720px) { .checklist { grid-template-columns: 1fr 1fr; gap: 18px 28px; } }
 .checklist li { display: flex; gap: 11px; align-items: flex-start; font-size: .96rem; }
 .checklist li::before {
   content: "✓"; flex: 0 0 22px; width: 22px; height: 22px; border-radius: 50%;
