@@ -1,6 +1,6 @@
 import { a as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_aS10jzg8.mjs';
 import 'kleur/colors';
-import { $ as $$Base } from '../chunks/Base_C7QanKeK.mjs';
+import { $ as $$Base } from '../chunks/Base_CycD1uBN.mjs';
 import { S as SITE } from '../chunks/config_Bdb_4Kqe.mjs';
 export { renderers } from '../renderers.mjs';
 

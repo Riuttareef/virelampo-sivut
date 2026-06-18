@@ -60,7 +60,7 @@ const huomioi = [
     <div class="container" style="max-width:900px">
       <h2 style="text-align:left">Mahdolliset lisätyöt</h2>
       <p style="color:var(--muted); margin-top:0">Lisätyöt sovitaan aina etukäteen. Kohteet ja tarpeet selviävät kartoituksessa.</p>
-      <table class="price">
+      <table class="price price--stack">
         <thead><tr><th>Lisätyö</th><th>Hinta</th><th>Sisältö</th></tr></thead>
         <tbody>
           {lisatyot.map((r) => <tr><td><strong>{r[0]}</strong></td><td style="white-space:nowrap">{r[1]}</td><td style="color:var(--muted)">{r[2]}</td></tr>)}
