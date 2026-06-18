@@ -181,6 +181,17 @@ img { max-width: 100%; height: auto; display: block; }
 .price th { background: var(--blue); color: #fff; font-family: var(--font-head); }
 .price tr:last-child td { border-bottom: none; }
 
+/* Mobiilissa taulukko vuotaisi ruudun ulkopuolelle – pinotaan rivit korteiksi */
+@media (max-width: 719px) {
+  .price thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .price, .price tbody, .price tr, .price td { display: block; width: 100%; }
+  .price tr { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .price tr:last-child { border-bottom: none; }
+  .price td { padding: 0; border: none; white-space: normal !important; }
+  .price td:nth-child(1) { font-size: 1.02rem; margin-bottom: 2px; }
+  .price td:nth-child(2) { color: var(--blue); font-weight: 600; margin-bottom: 4px; }
+}
+
 /* ---- Form ---- */
 .form { display: grid; gap: 14px; max-width: 560px; }
 .form label { font-weight: 600; font-size: .95rem; display: block; margin-bottom: 4px; }
