@@ -5,7 +5,7 @@ import { S as SITE } from '../chunks/config_Bdb_4Kqe.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Yhteys = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "Base", $$Base, { "title": "Pyyd\xE4 tarjous", "description": "Pyyd\xE4 maksuton tarjous ilmal\xE4mp\xF6pumpun asennuksesta." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="hero"> <div class="container"> <h1>Pyydä maksuton tarjous</h1> <p>Täytä lyhyt lomake, niin otamme sinuun yhteyttä. ${SITE.responsePromise}</p> </div> </section> <section class="section"> <div class="container" style="display:grid; gap:32px; grid-template-columns:1fr;"> <div> <!--
+  return renderTemplate`${renderComponent($$result, "Base", $$Base, { "title": "Pyyd\xE4 tarjous", "description": "Pyyd\xE4 maksuton tarjous ilmal\xE4mp\xF6pumpun asennuksesta tai huollosta. Vastaamme yleens\xE4 saman p\xE4iv\xE4n aikana. Toiminta-alueena Varsinais-Suomi, Pirkanmaa ja Uusimaa." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="hero"> <div class="container"> <h1>Pyydä maksuton tarjous</h1> <p>Täytä lyhyt lomake, niin otamme sinuun yhteyttä. ${SITE.responsePromise}</p> </div> </section> <section class="section"> <div class="container" style="display:grid; gap:32px; grid-template-columns:1fr;"> <div> <!--
           LOMAKE: Käyttää Formspree-palvelua (toimii Cloudflare Pagesissa, ilmainen taso).
           Vaihda alla olevaan action-osoitteeseen oma Formspree-tunnuksesi (FORM_ID)
           osoitteesta formspree.io. Lähetykset tulevat sähköpostiisi.
